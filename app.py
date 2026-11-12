@@ -360,7 +360,7 @@ def colors(src: str) -> str:
 # --------------------------------------------------------------------------
 with st.sidebar:
     st.markdown("### 📡 PaperPilot 文献雷达")
-    st.caption("v2.0 · 一句话意图 → 可读的文献调研简报")
+    st.caption("v3.0 · 一句话意图 → 可读的文献调研简报")
 
     st.markdown("#### ① 说方向")
     st.text_input(
