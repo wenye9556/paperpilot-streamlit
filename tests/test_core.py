@@ -13,7 +13,7 @@ def work(title="A study of truck drone routing", year=2024, cited=10,
          issn="0968-090X", venue="Transportation Research Part C",
          abstract="We propose a mixed-integer model and a heuristic for truck drone routing.",
          doi="10.1000/test", oa=True, tags=("openalex",),
-         url="https://example.org/x"):
+         url="https://example.org/x", oa_url="", score_hint=0.0):
     return {
         "title": title,
         "abstract": abstract,
@@ -23,6 +23,8 @@ def work(title="A study of truck drone routing", year=2024, cited=10,
         "issn": issn,
         "is_top": issn in core.TOP_NAME,
         "is_oa": oa,
+        "oa_url": oa_url,
+        "score_hint": score_hint,
         "authors": ["Alice Zhang", "Bob Li"],
         "doi": doi,
         "url": url,
@@ -184,6 +186,29 @@ class ExportTest(unittest.TestCase):
         text = core.citation_text(self.items[0])
         self.assertIn("2024", text)
         self.assertIn("https://doi.org/", text)
+
+
+class DomainMatrixTest(unittest.TestCase):
+    def test_domains(self):
+        self.assertIn("物流配送", core._domains("truck drone delivery logistics"))
+        self.assertIn("医疗健康", core._domains("hospital patient healthcare"))
+        self.assertEqual(core._domains("something unknown"), ["其他"])
+
+    def test_oa_url_propagates(self):
+        rows = core.score_all([work(oa_url="https://example.org/a.pdf")], "truck drone")
+        self.assertEqual(rows[0]["oa_url"], "https://example.org/a.pdf")
+
+    def test_matrices(self):
+        items = core.score_all([
+            work(title="Truck drone delivery with machine learning", year=2024),
+            work(title="Hospital scheduling with optimization", year=2025, doi="10.1/b"),
+        ], "truck drone scheduling")
+        dm = core.method_domain_matrix(items)
+        self.assertTrue(any(r["count"] > 0 for r in dm))
+        ym = core.method_year_matrix(items)
+        self.assertTrue(any(r["year"] == 2025 for r in ym))
+        self.assertTrue(all({"domain", "method", "count"} <= set(r) for r in dm))
+        self.assertTrue(all({"year", "method", "count"} <= set(r) for r in ym))
 
 
 if __name__ == "__main__":

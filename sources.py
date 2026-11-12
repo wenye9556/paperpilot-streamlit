@@ -15,13 +15,14 @@ import time
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
+from difflib import SequenceMatcher
 
 import core
 
 CROSSREF_BASE = "https://api.crossref.org/works"
 CROSSREF_UA = "PaperPilot-Radar/2.0 (literature radar; public metadata only)"
 CROSSREF_SELECT = ("DOI,title,container-title,issued,is-referenced-by-count,author,"
-                   "abstract,URL,ISSN,license,type")
+                   "abstract,URL,ISSN,license,type,link")
 
 SOURCE_LABEL = {"openalex": "OpenAlex", "crossref": "Crossref"}
 
@@ -70,6 +71,13 @@ def normalize_crossref(it: dict) -> dict:
     url = (it.get("URL") or "").strip() or (f"https://doi.org/{doi}" if doi else "")
     licenses = [str((lic or {}).get("URL") or "") for lic in (it.get("license") or [])]
     is_oa = any("creativecommons.org" in u.lower() for u in licenses)
+    oa_url = ""
+    if is_oa:
+        for link in it.get("link") or []:
+            if "pdf" in str((link or {}).get("content-type") or "").lower():
+                oa_url = str((link or {}).get("URL") or "")
+                if oa_url:
+                    break
 
     return {
         "title": title,
@@ -80,6 +88,8 @@ def normalize_crossref(it: dict) -> dict:
         "issn": issn,
         "is_top": bool(is_top),
         "is_oa": is_oa,
+        "oa_url": oa_url,
+        "score_hint": 0.0,
         "authors": authors[:12],
         "doi": doi,
         "url": url,
@@ -164,6 +174,57 @@ def _key(item: dict) -> str:
     return "title:" + norm[:90]
 
 
+def _merge_into(base: dict, it: dict) -> None:
+    """把 it 的可用信息补进 base（保留更完整的摘要与链接）。"""
+    tags = set(base.get("source_tags") or []) | set(it.get("source_tags") or [])
+    base["source_tags"] = sorted(tags)
+    base["cited"] = max(int(base.get("cited") or 0), int(it.get("cited") or 0))
+    base["is_oa"] = bool(base.get("is_oa")) or bool(it.get("is_oa"))
+    base["is_top"] = bool(base.get("is_top")) or bool(it.get("is_top"))
+    if len(it.get("abstract") or "") > len(base.get("abstract") or ""):
+        base["abstract"] = it["abstract"]
+    if not base.get("oa_url") and it.get("oa_url"):
+        base["oa_url"] = it["oa_url"]
+    for f in ("doi", "url", "year", "venue", "issn"):
+        if not base.get(f) and it.get(f):
+            base[f] = it[f]
+
+
+def _norm_title(t: str) -> str:
+    t = (t or "").lower()
+    t = re.sub(r"[^a-z0-9\u4e00-\u9fa5 ]+", " ", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def _first_last(item: dict) -> str:
+    authors = item.get("authors") or []
+    if not authors:
+        return ""
+    return authors[0].split()[-1].lower()
+
+
+def _near_dup(a: dict, b: dict) -> bool:
+    """保守的近重复判断：只合并标题几乎一致、首作者一致、年份相近的条目。"""
+    ta, tb = _norm_title(a.get("title")), _norm_title(b.get("title"))
+    if not ta or not tb:
+        return False
+    if ta == tb:
+        return True
+    if min(len(ta), len(tb)) < 30:
+        return False
+    ya, yb = int(a.get("year") or 0), int(b.get("year") or 0)
+    if ya and yb and abs(ya - yb) > 1:
+        return False
+    fa, fb = _first_last(a), _first_last(b)
+    if fa and fb and fa != fb:
+        return False
+    # 不合并同一论文的 Part I / Part II
+    if (re.search(r"\bpart\s*(i|1)\b", ta) and re.search(r"\bpart\s*(ii|2)\b", tb)) or \
+       (re.search(r"\bpart\s*(ii|2)\b", ta) and re.search(r"\bpart\s*(i|1)\b", tb)):
+        return False
+    return SequenceMatcher(None, ta, tb).ratio() >= 0.97
+
+
 def merge_items(groups: list[list[dict]], size: int = 50) -> list[dict]:
     merged: dict[str, dict] = {}
     order: list[str] = []
@@ -172,22 +233,29 @@ def merge_items(groups: list[list[dict]], size: int = 50) -> list[dict]:
         for it in items:
             k = _key(it)
             if k in merged:
-                base = merged[k]
-                tags = set(base.get("source_tags") or []) | set(it.get("source_tags") or [])
-                base["source_tags"] = sorted(tags)
-                base["cited"] = max(int(base.get("cited") or 0), int(it.get("cited") or 0))
-                base["is_oa"] = bool(base.get("is_oa")) or bool(it.get("is_oa"))
-                base["is_top"] = bool(base.get("is_top")) or bool(it.get("is_top"))
-                if len(it.get("abstract") or "") > len(base.get("abstract") or ""):
-                    base["abstract"] = it["abstract"]
-                for f in ("doi", "url", "year", "venue", "issn"):
-                    if not base.get(f) and it.get(f):
-                        base[f] = it[f]
+                _merge_into(merged[k], it)
             else:
                 row = dict(it)
                 row["source_tags"] = list(it.get("source_tags") or [])
                 merged[k] = row
                 order.append(k)
+
+    # 第二遍：保守近重复合并（预印本/正式版等标题几乎一致的情况）
+    final: dict[str, dict] = {}
+    final_order: list[str] = []
+    for k in order:
+        row = merged[k]
+        dup_key = None
+        for fk in final_order:
+            if _near_dup(final[fk], row):
+                dup_key = fk
+                break
+        if dup_key:
+            _merge_into(final[dup_key], row)
+        else:
+            final[k] = row
+            final_order.append(k)
+    merged, order = final, final_order
 
     # 双源命中的条目优先，其余保持原有召回顺序
     order.sort(key=lambda k: -len(merged[k].get("source_tags") or []))

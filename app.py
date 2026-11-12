@@ -10,10 +10,12 @@
 
 from __future__ import annotations
 
+import json
 import math
 import re
 from datetime import datetime
 from html import escape as h
+from pathlib import Path
 
 import altair as alt
 import pandas as pd
@@ -93,6 +95,15 @@ st.markdown(
       div[data-testid="stExpander"] details { border-radius:10px; }
       button[data-baseweb="tab"] { font-size:14.5px; }
       @media (max-width: 900px) { .pp-statrow { grid-template-columns:repeat(3,1fr); } }
+      @media (max-width: 640px) {
+        .block-container { padding-left:.8rem; padding-right:.8rem; padding-top:2.2rem; }
+        .pp-hero h1 { font-size:24px; }
+        .pp-statrow { grid-template-columns:repeat(2,1fr); }
+        .pp-dims { gap:8px; }
+        .pp-title { font-size:14px; }
+        .pp-intent { font-size:12px; }
+        div[data-testid="stMetric"] { padding:8px 10px; }
+      }
     </style>
     """,
     unsafe_allow_html=True,
@@ -115,6 +126,46 @@ SS.setdefault("llm_error", "")
 SS.setdefault("llm_used", False)
 SS.setdefault("pick_note", "")
 SS.setdefault("auto_search", False)
+SS.setdefault("demo_mode", False)
+SS.setdefault("url_loaded", False)
+
+# --------------------------------------------------------------------------
+# URL 参数：支持分享「带检索条件的可复现链接」
+# --------------------------------------------------------------------------
+QP = st.query_params
+if not SS["url_loaded"]:
+    SS["url_loaded"] = True
+    if QP.get("q"):
+        SS["q"] = QP.get("q")
+        window_map_qp = {"0": "不限", "365": "近 1 年", "1095": "近 3 年", "1825": "近 5 年"}
+        if QP.get("window") in window_map_qp:
+            SS["f_window"] = window_map_qp[QP["window"]]
+        if QP.get("cite") in {"0", "5", "20", "100"}:
+            SS["f_cite"] = int(QP["cite"])
+        if QP.get("size") in {"25", "50", "100"}:
+            SS["f_size"] = int(QP["size"])
+        if QP.get("top") in {"0", "1"}:
+            SS["f_top"] = QP["top"] == "1"
+        if QP.get("oa") in {"0", "1"}:
+            SS["f_oa"] = QP["oa"] == "1"
+        if QP.get("th"):
+            try:
+                SS["f_thresh"] = max(55, min(90, int(QP["th"])))
+            except ValueError:
+                pass
+        if QP.get("src"):
+            picked_qp = set(QP["src"].split(","))
+            SS["src_openalex"] = "openalex" in picked_qp
+            SS["src_crossref"] = "crossref" in picked_qp
+        SS["auto_search"] = True
+
+
+SNAPSHOT_PATH = Path(__file__).with_name("demo_snapshot.json")
+
+
+@st.cache_data(show_spinner=False)
+def load_snapshot() -> dict:
+    return json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
 
 
 # --------------------------------------------------------------------------
@@ -130,6 +181,29 @@ def _pill_change() -> None:
     if v:
         _use_query(v)
         SS["example_pill"] = None
+
+
+def _load_demo() -> None:
+    """载入随包示例快照：网络/配额异常时也能完整演示。"""
+    try:
+        data = load_snapshot()
+    except Exception as exc:  # noqa: BLE001
+        st.error(f"示例快照加载失败：{exc}")
+        return
+    SS["items"] = data.get("items") or []
+    SS["stats"] = data.get("stats") or {}
+    SS["query"] = data.get("query") or ""
+    SS["intent"] = data.get("intent") or {}
+    SS["insights"] = data.get("insights") or []
+    SS["summary"] = data.get("summary") or ""
+    SS["searched_at"] = (data.get("generated_at") or "") + "（示例快照）"
+    SS["demo_mode"] = True
+    SS["sel_keys"] = set()
+    SS["llm_reasons"] = {}
+    SS["pick_note"] = ""
+    SS["ai_summary"] = ""
+    SS["history"] = [SS["query"]] if SS["query"] else []
+    st.query_params["q"] = SS["query"]
 
 
 def ring_html(score: int) -> str:
@@ -259,11 +333,22 @@ def run_search(q: str, window_days: int, min_cite: int, size: int, top_only: boo
     SS["insights"] = insights
     SS["summary"] = summary
     SS["ai_summary"] = ""
+    SS["demo_mode"] = False
     SS["searched_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     SS["sel_keys"] = set()
     SS["llm_reasons"] = {}
     SS["pick_note"] = ""
     SS["history"] = ([q] + [x for x in SS["history"] if x != q])[:6]
+
+    # 把检索条件写进 URL，便于分享与复现
+    st.query_params["q"] = q
+    st.query_params["window"] = str(int(window_days))
+    st.query_params["cite"] = str(int(min_cite))
+    st.query_params["size"] = str(int(size))
+    st.query_params["top"] = "1" if top_only else "0"
+    st.query_params["oa"] = "1" if oa_only else "0"
+    st.query_params["th"] = str(int(threshold))
+    st.query_params["src"] = ",".join(picked)
 
 
 def colors(src: str) -> str:
@@ -289,18 +374,19 @@ with st.sidebar:
         label_visibility="collapsed", on_change=_pill_change,
     )
     do_search = st.button("🔍 开始检索", type="primary", width="stretch", key="btn_search")
-    st.caption("默认近 3 年 · 双源 · 50 篇；可在「② 筛选与数据源」调整。")
 
-    with st.expander("② 筛选与数据源", expanded=False):
+    st.markdown("#### ② 关键筛选")
+    top_only = st.checkbox("仅顶刊池（22 刊）", value=False, key="f_top")
+    threshold = st.slider("推荐阈值", 55, 90, 70, 1, key="f_thresh",
+                          help="综合分达到该值且证据完整，才标记为「推荐精读」。")
+
+    with st.expander("③ 高级筛选与数据源", expanded=False):
         window_label = st.selectbox("时间窗", ["近 3 年", "近 1 年", "近 5 年", "不限"],
                                     index=0, key="f_window")
         min_cite = st.selectbox("最少引用", [0, 5, 20, 100], index=0, key="f_cite",
                                 format_func=lambda v: "不限" if v == 0 else f"≥ {v}")
         size = st.selectbox("召回条数", [25, 50, 100], index=1, key="f_size")
-        top_only = st.checkbox("仅顶刊池（22 刊）", value=False, key="f_top")
         oa_only = st.checkbox("仅开放获取", value=False, key="f_oa")
-        threshold = st.slider("推荐阈值", 55, 90, 70, 1, key="f_thresh",
-                              help="综合分达到该值且证据完整，才标记为「推荐精读」。")
 
         st.markdown("**数据源**")
         use_openalex = st.checkbox("OpenAlex（开放学术索引）", value=True, key="src_openalex")
@@ -312,6 +398,9 @@ with st.sidebar:
     ) or ("openalex",)
     window_map = {"近 1 年": 365, "近 3 年": 1095, "近 5 年": 1825, "不限": 0}
     window_days = window_map[window_label]
+
+    st.button("⚡ 载入示例结果", key="btn_demo", width="stretch", on_click=_load_demo)
+    st.caption("默认近 3 年 · 双源 · 50 篇；示例结果为 2026-11-12 快照，不依赖网络。")
 
     st.divider()
     with st.expander("✨ AI 增强（自带 Key，可选）", expanded=False):
@@ -408,10 +497,13 @@ if not items:
             "- **合规**：只读公开元数据，不下载全文、不绕过付费墙"
         )
         st.markdown(
-            '<div class="pp-note">评委可直接输入任意主题体验；若只想看固定结果，'
-            '点侧边栏示例「卡车无人机协同配送路径规划」。</div>',
+            '<div class="pp-note">评委可直接输入任意主题体验；若网络或 OpenAlex 配额不稳定，'
+            '点下方「载入示例结果」即可看到完整流程（2026-11-12 快照）。</div>',
             unsafe_allow_html=True,
         )
+        if st.button("⚡ 载入示例结果", key="btn_demo_empty", width="stretch"):
+            _load_demo()
+            st.rerun()
     with c2:
         st.markdown("#### 22 刊顶刊池（按 ISSN 源头过滤）")
         st.dataframe(
@@ -469,13 +561,16 @@ st.caption(
 if s.get("errors"):
     st.info("部分来源本次未返回结果，已自动使用其余来源，不影响本次检索："
             + "；".join(f"{colors(k)} {v}" for k, v in s["errors"].items())
-            + "。若 OpenAlex 提示配额，可在「② 筛选与数据源」填入自己的免费 API Key。")
+            + "。若 OpenAlex 提示配额，可在「③ 高级筛选与数据源」填入自己的免费 API Key。")
+if SS.get("demo_mode"):
+    st.info("当前展示的是示例快照（2026-11-12），不是实时检索；"
+            "点「🔍 开始检索」可拉取最新数据，点「⚡ 载入示例结果」可随时回到这份快照。")
 
 # --------------------------------------------------------------------------
 # 四个标签页
 # --------------------------------------------------------------------------
 tab_list, tab_insight, tab_report, tab_export = st.tabs(
-    ["📚 文献雷达", "🔭 领域洞察", "📝 调研简报", "📤 导出与复现"]
+    ["📚 文献", "🔭 洞察", "📝 简报", "📤 导出"]
 )
 
 with tab_list:
@@ -507,6 +602,14 @@ with tab_list:
         view = [x for x in view if x["rec"]]
     if only_star:
         view = [x for x in view if x["key"] in SS["stars"]]
+    kw = st.text_input(
+        "结果内过滤", key="kw",
+        placeholder="在标题、摘要、期刊中过滤，例如：reinforcement / 港口 / berth",
+        label_visibility="collapsed",
+    ).strip().lower()
+    if kw:
+        view = [x for x in view
+                if kw in (x["title"] + " " + x["abstract"] + " " + x["venue"]).lower()]
     if sort_by == "引用量":
         view.sort(key=lambda x: -x["cited"])
     elif sort_by == "年份":
@@ -518,7 +621,8 @@ with tab_list:
     with bar_a:
         st.caption(f"已选 {len(SS['sel_keys'])} / {len(items)} 篇"
                    + (f"　·　{SS['pick_note']}" if SS["pick_note"] else "")
-                   + f"　·　收藏 {len(SS['stars'])} 篇")
+                   + f"　·　收藏 {len(SS['stars'])} 篇"
+                   + (f"　·　过滤后 {len(view)} 篇" if kw else ""))
     with bar_b:
         show_n = st.selectbox("显示", [10, 25, 50, 100], index=1,
                               label_visibility="collapsed", key="show_n")
@@ -533,7 +637,7 @@ with tab_list:
                     st.error(str(exc))
 
     if not view:
-        st.info("当前筛选下没有文献，试试取消「只看达标 / 只看收藏」。")
+        st.info("当前筛选下没有文献，试试取消「只看达标 / 只看收藏」或清空结果内过滤。")
 
     for rank, it in enumerate(view[:int(show_n)], 1):
         with st.container(border=True):
@@ -580,6 +684,8 @@ with tab_list:
                 )
                 if it.get("method_groups"):
                     st.markdown("**方法分组**：" + "、".join(it["method_groups"]))
+                if it.get("domains"):
+                    st.markdown("**应用领域**：" + "、".join(it["domains"]))
                 if it.get("evid_missing"):
                     st.caption("证据缺口：" + "、".join(it["evid_missing"]))
                 st.markdown("**摘要**：" + (h(it["abstract"]) if it["abstract"]
@@ -588,6 +694,9 @@ with tab_list:
                 st.markdown("**引用**（点代码块右上角复制）：")
                 st.code(core.citation_text(it), language=None, wrap_lines=True)
                 links = []
+                oa_pdf = safe_url(it.get("oa_url"))
+                if oa_pdf and it.get("is_oa"):
+                    links.append(f"[直达 PDF（OA）]({oa_pdf})")
                 u = safe_url(it.get("url"))
                 if u:
                     links.append(f"[出版商页面]({u})")
@@ -665,6 +774,57 @@ with tab_insight:
         st.altair_chart(chart, use_container_width=True)
 
     st.divider()
+    st.markdown("##### 方法 × 年份")
+    method_order = [g for g, _ in sorted(method_counts.items(), key=lambda kv: -kv[1])]
+    my_rows = core.method_year_matrix(items)
+    if my_rows and method_order:
+        mydf = pd.DataFrame(my_rows)
+        base = alt.Chart(mydf).mark_rect().encode(
+            x=alt.X("year:O", title="年份", axis=alt.Axis(labelAngle=0)),
+            y=alt.Y("method:N", title="", sort=method_order),
+            color=alt.Color("count:Q", scale=alt.Scale(scheme="blues"), title="篇数"),
+            tooltip=[alt.Tooltip("year:O", title="年份"),
+                     alt.Tooltip("method:N", title="方法"),
+                     alt.Tooltip("count:Q", title="篇数")],
+        )
+        text = alt.Chart(mydf[mydf["count"] > 0]).mark_text(
+            size=10, color="#0F172A").encode(
+            x=alt.X("year:O", sort=None),
+            y=alt.Y("method:N", sort=method_order),
+            text=alt.Text("count:Q", format="d"),
+        )
+        st.altair_chart((base + text).properties(height=max(240, 30 * len(method_order))),
+                        use_container_width=True)
+    else:
+        st.caption("本批文献没有识别到方法关键词，无法生成方法趋势图。")
+
+    st.markdown("##### 领域 × 方法")
+    md_rows = core.method_domain_matrix(items)
+    if md_rows:
+        mddf = pd.DataFrame(md_rows)
+        domains = sorted(mddf["domain"].unique())
+        if len(domains) <= 1:
+            st.caption(f"本批文献集中在「{domains[0]}」一个应用领域，领域×方法矩阵暂不展开。")
+        else:
+            base = alt.Chart(mddf).mark_rect().encode(
+                x=alt.X("method:N", title="", sort=method_order,
+                        axis=alt.Axis(labelAngle=-20)),
+                y=alt.Y("domain:N", title="", sort=domains),
+                color=alt.Color("count:Q", scale=alt.Scale(scheme="teals"), title="篇数"),
+                tooltip=[alt.Tooltip("domain:N", title="领域"),
+                         alt.Tooltip("method:N", title="方法"),
+                         alt.Tooltip("count:Q", title="篇数")],
+            )
+            text = alt.Chart(mddf[mddf["count"] > 0]).mark_text(
+                size=10, color="#0F172A").encode(
+                x=alt.X("method:N", sort=method_order),
+                y=alt.Y("domain:N", sort=domains),
+                text=alt.Text("count:Q", format="d"),
+            )
+            st.altair_chart((base + text).properties(height=max(220, 42 * len(domains))),
+                            use_container_width=True)
+
+    st.divider()
     st.markdown("##### 选题线索")
     for ins in SS["insights"]:
         st.markdown(
@@ -714,6 +874,7 @@ with tab_report:
         "sources": [colors(s) for s in (stats.get("sources") or [])],
         "insights": SS["insights"],
         "summary": summary_text,
+        "demo": SS.get("demo_mode", False),
     })
     st.divider()
     st.markdown(report_md.replace("# PaperPilot 文献调研简报", "", 1).lstrip())

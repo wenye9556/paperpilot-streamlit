@@ -139,6 +139,39 @@ METHOD_GROUPS: dict[str, list[str]] = {
 }
 METHOD_KEYS = [k for keys in METHOD_GROUPS.values() for k in keys]
 
+# 应用领域分组：用于「领域 × 方法」矩阵与选题线索（只做元数据画像）
+DOMAIN_GROUPS: dict[str, list[str]] = {
+    "物流配送": [
+        "logistics", "delivery", "last-mile", "vehicle routing", "parcel", "warehouse",
+        "supply chain", "truck", "drone", "freight",
+        "物流", "配送", "路径", "仓储", "供应链", "无人机", "卡车", "货车",
+    ],
+    "交通出行": [
+        "traffic", "transit", "metro", "railway", "port", "berth", "shipping",
+        "aviation", "flight", "交通", "公交", "铁路", "港口", "泊位", "航运", "航空", "航班",
+    ],
+    "制造生产": [
+        "manufacturing", "production", "job shop", "maintenance", "quality control",
+        "制造", "生产", "车间", "维护", "质量控制",
+    ],
+    "能源环境": [
+        "energy", "renewable", "power system", "microgrid", "storage", "carbon",
+        "emission", "sustainable", "能源", "电力", "储能", "碳", "低碳", "可持续",
+    ],
+    "医疗健康": [
+        "healthcare", "hospital", "patient", "medical", "clinical",
+        "医疗", "医院", "患者", "临床",
+    ],
+    "农业食品": [
+        "agriculture", "food", "cold chain", "fresh produce",
+        "农业", "食品", "冷链", "生鲜",
+    ],
+    "服务运营": [
+        "pricing", "revenue", "platform", "sharing economy", "retail", "e-commerce",
+        "定价", "收益", "平台", "零售", "电商", "契约",
+    ],
+}
+
 STOP = set(
     ("the and for with from that this using based study research analysis of in on a an to by via "
      "their its our we is are be as at or not can may how what why when which into out more most than then there "
@@ -149,7 +182,7 @@ STOP = set(
 
 ALEX_BASE = "https://api.openalex.org/works"
 ALEX_SELECT = ("id,doi,title,publication_year,cited_by_count,primary_location,"
-               "authorships,open_access,abstract_inverted_index")
+               "authorships,open_access,abstract_inverted_index,relevance_score")
 UA = "PaperPilot-Radar/2.0 (public metadata only)"
 
 
@@ -202,6 +235,7 @@ def normalize_openalex_work(w: dict) -> dict:
                for a in (w.get("authorships") or [])][:12]
     doi = (w.get("doi") or "").replace("https://doi.org/", "").lower()
     url = ((w.get("primary_location") or {}).get("landing_page_url") or w.get("doi") or "")
+    oa = w.get("open_access") or {}
     return {
         "title": html.unescape(w.get("title") or "").strip(),
         "abstract": abstract_from_inverted(w.get("abstract_inverted_index")),
@@ -210,7 +244,9 @@ def normalize_openalex_work(w: dict) -> dict:
         "venue": html.unescape(venue).strip(),
         "issn": issn,
         "is_top": bool(is_top),
-        "is_oa": bool((w.get("open_access") or {}).get("is_oa")),
+        "is_oa": bool(oa.get("is_oa")),
+        "oa_url": oa.get("oa_url") or "",
+        "score_hint": float(w.get("relevance_score") or 0),
         "authors": [html.unescape(a) for a in authors if a],
         "doi": doi,
         "url": url,
@@ -227,6 +263,8 @@ def normalize_work(w: dict) -> dict:
         row.setdefault("issn", "")
         row.setdefault("is_top", False)
         row.setdefault("is_oa", False)
+        row.setdefault("oa_url", "")
+        row.setdefault("score_hint", 0.0)
         row.setdefault("authors", [])
         row.setdefault("doi", "")
         row.setdefault("url", "")
@@ -329,6 +367,22 @@ def _method_groups(text: str) -> list[str]:
     return [g for g, keys in METHOD_GROUPS.items() if any(k in low for k in keys)]
 
 
+def _domains(text: str) -> list[str]:
+    """按标题/摘要关键词判断应用领域，允许一篇多领域。"""
+    low = (text or "").lower()
+    out: list[str] = []
+    for domain, keys in DOMAIN_GROUPS.items():
+        for k in keys:
+            if re.fullmatch(r"[a-z0-9 &-]+", k):
+                if re.search(r"(?<![a-z])" + re.escape(k) + r"(?![a-z])", low):
+                    out.append(domain)
+                    break
+            elif k in low:
+                out.append(domain)
+                break
+    return out or ["其他"]
+
+
 def _item_key(item: dict) -> str:
     doi = (item.get("doi") or "").lower().strip()
     if doi:
@@ -360,11 +414,25 @@ def score_all(works: list[dict], query: str, extra_terms: list[str] | None = Non
     df = Counter()
     for toks in doc_tokens:
         df.update(set(toks))
-    idf = {t: math.log((n + 1) / (c + 1)) + 1.0 for t, c in df.items()}
-    default_idf = math.log(n + 1) + 1.0
-    q_tf = Counter(q_tokens)
-    q_vec = {t: (1 + math.log(c)) * idf.get(t, default_idf) for t, c in q_tf.items()}
-    q_norm = math.sqrt(sum(v * v for v in q_vec.values())) or 1.0
+
+    # BM25：比 TF-IDF 余弦更适合长短不一的标题/摘要
+    avgdl = sum(len(toks) for toks in doc_tokens) / max(1, n)
+    k1, b = 1.2, 0.75
+    idf = {t: math.log(1 + (n - c + 0.5) / (c + 0.5)) for t, c in df.items()}
+    bm25_raw: list[float] = []
+    for toks in doc_tokens:
+        tf = Counter(toks)
+        dl = len(toks)
+        score = 0.0
+        for t in q_set:
+            f = tf.get(t, 0)
+            if f:
+                score += idf.get(t, 0.0) * f * (k1 + 1) / (
+                    f + k1 * (1 - b + b * dl / max(1.0, avgdl)))
+        bm25_raw.append(score)
+    max_bm25 = max(bm25_raw) or 1.0
+
+    hint_max = max((float(x.get("score_hint") or 0) for x in items), default=0.0)
 
     cited_sorted = sorted(int(x.get("cited") or 0) for x in items)
 
@@ -387,16 +455,17 @@ def score_all(works: list[dict], query: str, extra_terms: list[str] | None = Non
         age = _age(x)
 
         toks = doc_tokens[i]
-        d_tf = Counter(toks)
-        d_vec = {t: (1 + math.log(c)) * idf.get(t, default_idf) for t, c in d_tf.items()}
-        d_norm = math.sqrt(sum(v * v for v in d_vec.values())) or 1.0
-        cos = sum(q_vec.get(t, 0.0) * v for t, v in d_vec.items()) / (q_norm * d_norm)
+        # BM25 饱和：保留头部区分度，压低「都相关」时的中段分数
+        bm25_norm = (bm25_raw[i] / max_bm25) ** 2.2
         coverage = (len(q_set & set(toks)) / len(q_set)) if q_set else 0.0
         rank_prior = 1.0 if n == 1 else 1.0 - i / (n - 1)
-        if "openalex" not in tags:
+        hint = float(x.get("score_hint") or 0)
+        if "openalex" in tags and hint_max > 0:
+            rank_prior = 0.55 * rank_prior + 0.45 * (hint / hint_max)
+        elif "openalex" not in tags:
             rank_prior = 0.55
         if q_set:
-            rel_raw = 0.50 * min(1.0, cos / 0.35) + 0.30 * coverage + 0.20 * rank_prior
+            rel_raw = 0.50 * bm25_norm + 0.30 * coverage + 0.20 * rank_prior
             rel = max(5, min(100, round(100 * rel_raw)))
         else:
             rel = 50
@@ -406,6 +475,7 @@ def score_all(works: list[dict], query: str, extra_terms: list[str] | None = Non
 
         text = title + " " + abstract
         groups = _method_groups(text)
+        domains = _domains(text)
         method = 32 + 9 * len(groups)
         if len(abstract) > 300:
             method += 6
@@ -456,6 +526,8 @@ def score_all(works: list[dict], query: str, extra_terms: list[str] | None = Non
             "year": year,
             "cited": cited,
             "is_oa": bool(x.get("is_oa")),
+            "oa_url": x.get("oa_url") or "",
+            "score_hint": float(x.get("score_hint") or 0),
             "authors": list(x.get("authors") or [])[:12],
             "doi": x.get("doi") or "",
             "url": x.get("url") or "",
@@ -465,8 +537,9 @@ def score_all(works: list[dict], query: str, extra_terms: list[str] | None = Non
             "evid_ok": evid_ok,
             "evid_missing": missing,
             "method_groups": groups,
+            "domains": domains,
             "source_tags": tags,
-            "src": "tfidf+meta",
+            "src": "bm25+meta",
             "why": "",
             "sel": False,
             "star": False,
@@ -542,6 +615,34 @@ def pick(items: list[dict]) -> list[dict]:
 # --------------------------------------------------------------------------
 # 选题洞察（只基于公开元数据与词频，不冒充论文结论）
 # --------------------------------------------------------------------------
+def method_domain_matrix(items: list[dict]) -> list[dict]:
+    """领域 × 方法 的共现矩阵，供界面热力图使用。"""
+    domains = sorted({d for x in items for d in (x.get("domains") or [])})
+    methods = sorted({g for x in items for g in (x.get("method_groups") or [])})
+    rows: list[dict] = []
+    for d in domains:
+        for m in methods:
+            c = sum(1 for x in items
+                    if d in (x.get("domains") or [])
+                    and m in (x.get("method_groups") or []))
+            rows.append({"domain": d, "method": m, "count": c})
+    return rows
+
+
+def method_year_matrix(items: list[dict]) -> list[dict]:
+    """年份 × 方法 的共现矩阵，用于看方法取向的年度变化。"""
+    years = sorted({int(x["year"]) for x in items if x.get("year")})
+    methods = sorted({g for x in items for g in (x.get("method_groups") or [])})
+    rows: list[dict] = []
+    for y in years:
+        for m in methods:
+            c = sum(1 for x in items
+                    if int(x.get("year") or 0) == y
+                    and m in (x.get("method_groups") or []))
+            rows.append({"year": y, "method": m, "count": c})
+    return rows
+
+
 def build_insights(items: list[dict], query: str = "", stats: dict | None = None) -> list[dict]:
     stats = stats or {}
     out: list[dict] = []
@@ -614,6 +715,55 @@ def build_insights(items: list[dict], query: str = "", stats: dict | None = None
                             f"可作为方法交叉的选题线索。",
                     "evidence": "按方法关键词共现统计，仅代表本批样本",
                 })
+
+        # 领域 × 方法：找「大领域里方法覆盖最少」的组合
+        dc = Counter()
+        for x in items:
+            for d in x.get("domains") or []:
+                dc[d] += 1
+        domain_candidates = [(d, c) for d, c in dc.most_common() if d != "其他" and c >= 5]
+        if domain_candidates:
+            d, dcount = domain_candidates[0]
+            pairs = []
+            for m, mcount in gc.items():
+                if mcount < 3:
+                    continue
+                co = sum(1 for x in items
+                         if d in (x.get("domains") or [])
+                         and m in (x.get("method_groups") or []))
+                pairs.append((co, m, mcount))
+            if pairs:
+                co, m, mcount = sorted(pairs)[0]
+                if co <= max(1, int(0.25 * min(dcount, mcount))):
+                    out.append({
+                        "tag": "缺口",
+                        "title": f"{d} × {m} 覆盖较少",
+                        "text": f"「{d}」领域 {dcount} 篇中，{m} 方法仅 {co} 篇"
+                                f"（全批 {m} 共 {mcount} 篇），可作为方法迁移的选题线索。",
+                        "evidence": "按领域关键词 × 方法关键词共现统计，仅代表本批样本",
+                    })
+
+        # 方法占比的年度变化
+        if len(yc) >= 2:
+            latest = max(yc)
+            latest_items = [x for x in items if x.get("year") == latest]
+            prev_items = [x for x in items if x.get("year") and x["year"] < latest]
+            if latest_items and prev_items:
+                deltas = []
+                for m in gc:
+                    a = sum(1 for x in latest_items if m in (x.get("method_groups") or [])) / len(latest_items)
+                    b = sum(1 for x in prev_items if m in (x.get("method_groups") or [])) / len(prev_items)
+                    deltas.append((a - b, m, a, b))
+                delta, m, a, b = sorted(deltas, key=lambda t: -abs(t[0]))[0]
+                if abs(delta) >= 0.15:
+                    direction = "上升" if delta > 0 else "下降"
+                    out.append({
+                        "tag": "趋势",
+                        "title": f"{m} 方法占比{direction}",
+                        "text": f"最新年份 {m} 占比 {a:.0%}，此前为 {b:.0%}"
+                                f"（最新 {len(latest_items)} 篇 vs 此前 {len(prev_items)} 篇）。",
+                        "evidence": "按年份分组的方法关键词占比，仅代表本批样本",
+                    })
 
     oa = sum(1 for x in items if x.get("is_oa"))
     out.append({
@@ -751,10 +901,11 @@ def to_csv(items: list[dict]) -> str:
 def to_json(items: list[dict]) -> str:
     payload = [{
         "title": x["title"], "venue": x["venue"], "year": x["year"], "cited": x["cited"],
-        "doi": x["doi"], "url": x["url"], "is_oa": x["is_oa"], "is_top": x["is_top"],
+        "doi": x["doi"], "url": x["url"], "oa_url": x.get("oa_url", ""),
+        "is_oa": x["is_oa"], "is_top": x["is_top"],
         "authors": x["authors"], "dims": x["dims"], "total": x["total"],
         "rec": x["rec"], "why": x["why"], "method_groups": x["method_groups"],
-        "source_tags": x["source_tags"],
+        "domains": x.get("domains", []), "source_tags": x["source_tags"],
     } for x in items]
     return json.dumps(payload, ensure_ascii=False, indent=2)
 
@@ -781,6 +932,8 @@ def build_report(items: list[dict], query: str, stats: dict,
     if meta.get("tags"):
         L.append(f"- 主题标签：{'、'.join(meta['tags'])}")
     L.append(f"- 数据源：{' / '.join(meta.get('sources') or ['OpenAlex'])}")
+    if meta.get("demo"):
+        L.append("- 数据说明：示例快照（非实时检索，2026-11-12）")
     L.append(f"- 生成时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     L.append(f"- 评分口径：相关 0.40 / 新颖 0.20 / 质量 0.15 / 方法 0.15 / 启发 0.10，"
              f"推荐阈值 {th}，另做证据完整性校验")
@@ -879,6 +1032,8 @@ def build_report(items: list[dict], query: str, stats: dict,
                  f"被引 {x['cited']}" + ("　· 开放获取" if x["is_oa"] else ""))
         if x["doi"]:
             L.append(f"- **DOI**：https://doi.org/{x['doi']}")
+        if x.get("oa_url"):
+            L.append(f"- **开放获取 PDF**：{x['oa_url']}")
         L.append(f"- **综合分**：{x['total']} = 相关 {d['rel']}×0.40 + 新颖 {d['nov']}×0.20 + "
                  f"质量 {d['qual']}×0.15 + 方法 {d['method']}×0.15 + 启发 {d['insp']}×0.10")
         if x.get("method_groups"):

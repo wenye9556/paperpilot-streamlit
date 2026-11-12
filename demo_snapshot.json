@@ -1,0 +1,2631 @@
+{
+ "generated_at": "2026-11-12 22:32:34",
+ "query": "卡车无人机协同配送路径规划",
+ "query_en": "truck drone collaborative delivery routing",
+ "intent": {
+  "raw": "卡车无人机协同配送路径规划",
+  "query": "truck drone collaborative delivery routing",
+  "tags": [
+   "卡车",
+   "无人机",
+   "协同配送",
+   "路径规划"
+  ],
+  "unknown": [],
+  "source": "glossary",
+  "note": "已识别 4 个术语并转成英文检索式"
+ },
+ "stats": {
+  "hit": 1400,
+  "page": 50,
+  "top": 17,
+  "oa": 30,
+  "avg_cited": 14,
+  "median_cited": 6,
+  "years": "2023–2026",
+  "rec": 27,
+  "doi": 49,
+  "abstract": 34,
+  "counts": {
+   "openalex": 1400,
+   "crossref": 160986
+  },
+  "errors": {},
+  "request_urls": {
+   "openalex": "https://api.openalex.org/works?search=truck+drone+collaborative+delivery+routing&filter=type:article,from_publication_date:2023-11-13&per-page=50&select=id,doi,title,publication_year,cited_by_count,primary_location,authorships,open_access,abstract_inverted_index,relevance_score",
+   "crossref": "https://api.crossref.org/works?query=truck+drone+collaborative+delivery+routing&rows=50&select=DOI%2Ctitle%2Ccontainer-title%2Cissued%2Cis-referenced-by-count%2Cauthor%2Cabstract%2CURL%2CISSN%2Clicense%2Ctype%2Clink&filter=type%3Ajournal-article%2Cfrom-pub-date%3A2023-11-13"
+  },
+  "elapsed_ms": 5318,
+  "sources": [
+   "openalex",
+   "crossref"
+  ],
+  "threshold": 70
+ },
+ "items": [
+  {
+   "i": 0,
+   "key": "doi:10.1038/s41598-026-66873-8",
+   "title": "Truck-drone collaborative delivery route optimization with carbon cost under normal-emergency dual-use",
+   "abstract": "Abstract Urban freight systems in megacities must simultaneously address carbon reduction targets and emergency preparedness requirements. This study develops a systems-oriented optimization framework for truck-drone collaborative delivery that integrates both objectives. Using Chengdu as a case study, we propose a dual-mode routing model that explicitly incorporates carbon costs as a carbon tax into the objective function. The model is solved using an Adaptive Large Neighborhood Search algorithm enhanced with Q-learning (ALNS-RL), featuring carbon-sensitive destruction and battery-constrained repair operators. We calibrate the model using Chengdu’s emission inventory across nine transport modes (2020–2025) and simulate it under carbon tax scenarios of 80, 150, and 300 CNY/ton. Results show that the drone usage ratio increases from 10.3% to 25.0% as the carbon tax rises, with a marginal incentive threshold near 150 CNY/ton. Under emergency mode, drone usage increases by 20%, while total cost and carbon emissions decrease by 4.3% and 4.2%, respectively. Overall, the proposed method reduces total cost by 31.0% and carbon emissions by 29.2% relative to a pure truck baseline. This study provides a practical decision-support framework for designing low-carbon and resilient urban logistics systems in megacities.",
+   "venue": "Scientific Reports",
+   "issn": "2045-2322",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 1,
+   "is_oa": true,
+   "oa_url": "https://www.nature.com/articles/s41598-026-66873-8_reference.pdf",
+   "score_hint": 223.51202,
+   "authors": [
+    "Qinyi Liu",
+    "Chenglin Ma"
+   ],
+   "doi": "10.1038/s41598-026-66873-8",
+   "url": "https://doi.org/10.1038/s41598-026-66873-8",
+   "dims": {
+    "rel": 72,
+    "nov": 100,
+    "qual": 74,
+    "method": 71,
+    "insp": 62
+   },
+   "total": 77,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "案例与综述"
+   ],
+   "domains": [
+    "物流配送",
+    "能源环境"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；方法覆盖 优化建模、启发式算法。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 72,
+   "cited_pct": 46
+  },
+  {
+   "i": 1,
+   "key": "doi:10.31058/j.mana.2026.91008",
+   "title": "Truck-Drone Collaborative Delivery Route Optimization for Urban Flood Emergency Logistics Under Regional Constraints",
+   "abstract": "Aiming at urban flood emergency distribution, this paper optimizes truck-drone collaborative delivery under regional constraints.A dual-objective mixed-integer linear programming model is constructed to minimize maximum delivery time and total cost, considering spatial zoning and drone service radius.The improved MO-RHGA-GCD algorithm is adopted, and TC collaboration mode is proposed.Case tests show the model outperforms traditional modes in efficiency and cost, providing effective emergency logistics decision support.",
+   "venue": "Management",
+   "issn": "",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "http://www.itspoa.com/UploadFiles/2026-02/369/2026021221172917293.pdf",
+   "score_hint": 212.08461,
+   "authors": [
+    "Yirong Zhao"
+   ],
+   "doi": "10.31058/j.mana.2026.91008",
+   "url": "https://doi.org/10.31058/j.mana.2026.91008",
+   "dims": {
+    "rel": 55,
+    "nov": 100,
+    "qual": 73,
+    "method": 47,
+    "insp": 58
+   },
+   "total": 66,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；OpenAlex 与 Crossref 双源命中；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 38,
+   "cited_pct": 38
+  },
+  {
+   "i": 2,
+   "key": "doi:10.1109/access.2025.3540880",
+   "title": "Research on the Route Planning Problem of Drone and Truck Collaborative Delivery in Restricted Areas",
+   "abstract": "Aiming at the low efficiency of logistics distribution and the problem of restricted areas, we develop a collaborative distribution model that integrates trucks and drones, allowing for single takeoff and multiple drone deliveries. By considering the restricted areas for trucks and drones, a mathematical model has been constructed and a multi-stage heuristic optimization algorithm is proposed. This algorithm combines ant colony algorithm and simulated annealing algorithm, and a variety of neighborhood generation operators are introduced to improve the optimization effect. The model and algorithm are verified by different examples. Results show that the average solutions of algorithm is efficiency higher than Guorbi in small-scale instance, compared with the traditional truck distribution, the collaborative distribution shrink the 22.3% distribution time on average. Additionally, the increase in the restricted area customers and truck numbers has a significant impact on the complexity of route planning and distribution efficiency. Our research results can provide valuable guidance for future drone participation in complex urban and rural logistics distribution scenarios.",
+   "venue": "IEEE Access",
+   "issn": "2169-3536",
+   "top_name": "",
+   "is_top": false,
+   "year": 2025,
+   "cited": 10,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.1109/access.2025.3540880",
+   "score_hint": 140.4067,
+   "authors": [
+    "Jun Zhou",
+    "Qiang Yu",
+    "Ziming Xue",
+    "Leibo Yang"
+   ],
+   "doi": "10.1109/access.2025.3540880",
+   "url": "https://doi.org/10.1109/access.2025.3540880",
+   "dims": {
+    "rel": 51,
+    "nov": 88,
+    "qual": 76,
+    "method": 62,
+    "insp": 66
+   },
+   "total": 65,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；OpenAlex 与 Crossref 双源命中；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 36,
+   "cited_pct": 64
+  },
+  {
+   "i": 3,
+   "key": "doi:10.1016/j.cie.2024.110659",
+   "title": "Delivery optimization for collaborative truck–drone routing problem considering vehicle obstacle avoidance",
+   "abstract": "",
+   "venue": "Computers & Industrial Engineering",
+   "issn": "0360-8352",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 19,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 139.46994,
+   "authors": [
+    "Fanhui Kong",
+    "Bin Jiang"
+   ],
+   "doi": "10.1016/j.cie.2024.110659",
+   "url": "https://doi.org/10.1016/j.cie.2024.110659",
+   "dims": {
+    "rel": 96,
+    "nov": 76,
+    "qual": 77,
+    "method": 41,
+    "insp": 49
+   },
+   "total": 76,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [
+    "优化建模"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 1%）；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 100,
+   "cited_pct": 74
+  },
+  {
+   "i": 4,
+   "key": "doi:10.3390/drones10090658",
+   "title": "Joint Fleet Sizing and Routing for Multi-Truck–Multi-Drone Collaborative Delivery",
+   "abstract": "Truck–multi-drone collaborative delivery can reduce last-mile costs, but fleet sizing and routing are often optimized separately, making it difficult to match resources with demand under a delivery-period constraint. This study addresses the scenario of collaborative delivery involving multiple trucks and multiple drones by constructing a two-stage optimization framework that integrates fleet sizing and route planning. In the first stage, queueing models and continuous approximation are employed to determine the initial configuration of trucks and drones based on demand intensity and delivery cycle constraints. The second stage introduces continuous drone delivery and cross-vehicle retrieval to enhance the flexibility of truck–drone collaboration; while optimizing collaborative routes, the framework adjusts the allocation of trucks and drones—adding or reducing resources based on route feasibility and equipment utilization—thereby achieving the joint optimization of transport capacity and collaborative routes with the objective of minimizing total system costs. A node–resource–flow-separated three-chain encoding and an adaptive large neighborhood search–simulated annealing algorithm are designed to solve the model. Multi-scale numerical experiments show that, compared with four simplified fleet-sizing strategies, the proposed framework achieves average cost savings of 15.4–15.5% for medium- and large-scale instances. The results reveal an economic saturation point of the delivery period that shifts with node scale and a non-monotonic relationship between fleet size and coordination efficiency. The framework supports demand-driven fleet configuration and provides operational guidance for cost-effective truck–drone last-mile delivery.",
+   "venue": "Drones",
+   "issn": "2504-446X",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.3390/drones10090658",
+   "score_hint": 136.29533,
+   "authors": [
+    "Fengjie Xie",
+    "Guojin Zhang",
+    "Yuhua Jia"
+   ],
+   "doi": "10.3390/drones10090658",
+   "url": "https://doi.org/10.3390/drones10090658",
+   "dims": {
+    "rel": 82,
+    "nov": 100,
+    "qual": 73,
+    "method": 65,
+    "insp": 58
+   },
+   "total": 79,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 10%）；近两年发表，时效性强；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 90,
+   "cited_pct": 38
+  },
+  {
+   "i": 5,
+   "key": "doi:10.1109/tmc.2026.3684905",
+   "title": "Collaborative Truck-Drone Routing With Pickup and Delivery Networks: A Memetic Optimization Approach",
+   "abstract": "Recent advancements in low-altitude network technology have significantly enhanced the applications of drones across various domains. This study emphasizes the innovative application of drones in collaborative delivery systems. We introduce the Flying Sidekick Traveling Salesman Problem with Pickup and Delivery (FSTSP-PD) to model real world online order and delivery networks. Firstly, the paper provides a new mixed-integer linear programming model aimed at optimal routing and scheduling of drones and trucks in this new paradigm of collaborative delivery networks. To solve this NP-hard problem, a memetic algorithm with tailored solution representation and a variable neighborhood search approach with search operators is proposed in this study. Moreover, a novel PD constraint-handling method is developed to efficiently handle the coupling and tight constraints by repairing the infeasible solutions. Comprehensive experimental results show that the proposed algorithm significantly outperforms the existing state-of-the-art algorithms on most benchmark instances. Further investigations underscore the effectiveness of the integrated truck-drone system in addressing pickup and delivery problems.",
+   "venue": "IEEE Transactions on Mobile Computing",
+   "issn": "1536-1233",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 134.4782,
+   "authors": [
+    "Ruonan Zhai",
+    "Zihong Chen",
+    "Zhaokun Hu",
+    "Yuanhao Cui",
+    "Yi Mei",
+    "Wenbo Du",
+    "Tong Guo",
+    "Yuxia Li"
+   ],
+   "doi": "10.1109/tmc.2026.3684905",
+   "url": "https://doi.org/10.1109/tmc.2026.3684905",
+   "dims": {
+    "rel": 86,
+    "nov": 100,
+    "qual": 73,
+    "method": 71,
+    "insp": 48
+   },
+   "total": 81,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 8%）；近两年发表，时效性强；方法覆盖 优化建模、启发式算法。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 92,
+   "cited_pct": 38
+  },
+  {
+   "i": 6,
+   "key": "doi:10.1016/j.cie.2026.112510",
+   "title": "Truck-drone collaborative emergency supply delivery routing problem under road blockages",
+   "abstract": "",
+   "venue": "Computers & Industrial Engineering",
+   "issn": "0360-8352",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 126.286606,
+   "authors": [
+    "Bowen Gu",
+    "Rui Zheng",
+    "Yongliang Lu",
+    "Jiayi Qiu"
+   ],
+   "doi": "10.1016/j.cie.2026.112510",
+   "url": "https://doi.org/10.1016/j.cie.2026.112510",
+   "dims": {
+    "rel": 95,
+    "nov": 100,
+    "qual": 73,
+    "method": 32,
+    "insp": 43
+   },
+   "total": 78,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 2%）；近两年发表，时效性强；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 98,
+   "cited_pct": 38
+  },
+  {
+   "i": 7,
+   "key": "doi:10.1080/00207543.2026.2626537",
+   "title": "Collaborative truck multi-drone pollution routing problem with pickup and delivery under variable truck speeds: a cost minimisation approach",
+   "abstract": "Collaborative truck-drone systems offer significant potential for reducing cost and emissions in last-mile logistics. However, prior studies often assume constant truck speeds, oversimplify fuel and drone energy use, and overlook differences between labor- and energy-dominant cost structures. This study introduces the Truck Multi-Drone Pollution Routing Problem with Pickup and Delivery under Variable Truck Speeds (TMD-PRP-PDVS), a generalisation of the PRP that integrates multi-drone coordination, segment-specific truck speed control, and realistic cost modelling. It is the first to unify variable truck speeds and coordinated truck-drone operations within a PRP framework for comparative analysis across distinct cost environments. A mixed-integer programming model is developed to minimise total cost, comprising truck fuel consumption, drone energy usage, and driver labor cost. For larger instances, an Adaptive Large Neighborhood Search heuristic is proposed with an embedded local search procedure that refines truck speeds at the route-segment level in polynomial time. Computational results show that drone deployment reduces total cost by about 40%, while speed optimisation yields an additional 7-11% on average and up to 18% in some cases. Case studies on real-world networks demonstrate applicability across contrasting cost regimes. The findings highlight the joint influence of truck speed regulation, drone deployment, and cost structures.",
+   "venue": "International Journal of Production Research",
+   "issn": "0020-7543",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 7,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 123.8013,
+   "authors": [
+    "Arash Alizadeh",
+    "Sharan Srinivas",
+    "James S. Noble",
+    "Alena Otto"
+   ],
+   "doi": "10.1080/00207543.2026.2626537",
+   "url": "https://doi.org/10.1080/00207543.2026.2626537",
+   "dims": {
+    "rel": 78,
+    "nov": 100,
+    "qual": 75,
+    "method": 56,
+    "insp": 60
+   },
+   "total": 77,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送",
+    "能源环境"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 86,
+   "cited_pct": 58
+  },
+  {
+   "i": 8,
+   "key": "doi:10.1016/j.trc.2026.105999",
+   "title": "A proactive-reactive framework for collaborative truck-drone pickup-and-delivery routing under uncertain customer presence",
+   "abstract": "",
+   "venue": "Transportation Research Part C Emerging Technologies",
+   "issn": "0968-090X",
+   "top_name": "TR Part C",
+   "is_top": true,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://www.sciencedirect.com/science/article/pii/S0968090X26004857/pdf",
+   "score_hint": 121.71117,
+   "authors": [
+    "Chao Li",
+    "Fan Yu",
+    "Qun Chen",
+    "Roberto Baldacci"
+   ],
+   "doi": "10.1016/j.trc.2026.105999",
+   "url": "https://doi.org/10.1016/j.trc.2026.105999",
+   "dims": {
+    "rel": 92,
+    "nov": 100,
+    "qual": 98,
+    "method": 32,
+    "insp": 63
+   },
+   "total": 83,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 4%）；发表于顶刊 TR Part C；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 96,
+   "cited_pct": 38
+  },
+  {
+   "i": 9,
+   "key": "doi:10.1145/3857798",
+   "title": "Collaborative Drone-Truck Routing for Power Line Maintenance with Multi-Package Deliveries",
+   "abstract": "We study a coordinated delivery problem where a drone, operating in tandem with a truck traveling along a road, delivers tools to pylons on a high-voltage power line. Each delivery is defined by a target pylon, package weight, urgency-based profit, and feasible launch and rendezvous points. The drone faces payload and energy constraints, can serve multiple deliveries in a mission, and can perform several missions before recharging. The objective is to maximize total urgency profit across all executed missions. We formalize this as the Power line Maintenance Problem (PMP), which requires selecting a subset of feasible missions that jointly respect energy limits and individually satisfy payload capacity. We prove that PMP is NP -hard and propose a two-phase solution: Generate Missions Phase (GMP), which generates multi-delivery missions, and Truck-drone multi-package Mission Problem (TMP), which selects the most profitable subset. An Integer Linear Program (ILP) formulation is provided for computing optimal solutions. We further study four variants of PMP with different weight models and energy costs. Complexity analysis shows that GMP is polynomial or pseudo-polynomial, while TMP remains NP -hard. Experiments show that GMP greatly reduces candidate missions, while allowing multiple deliveries per mission improves energy efficiency by up to 4 ×.",
+   "venue": "ACM Transactions on Sensor Networks",
+   "issn": "1550-4859",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.1145/3857798",
+   "score_hint": 120.21585,
+   "authors": [
+    "Francesco Betti Sorbelli",
+    "Sajjad Ghobadi",
+    "Lorenzo Palazzetti",
+    "Cristina Maria Pinotti"
+   ],
+   "doi": "10.1145/3857798",
+   "url": "https://doi.org/10.1145/3857798",
+   "dims": {
+    "rel": 70,
+    "nov": 100,
+    "qual": 73,
+    "method": 56,
+    "insp": 58
+   },
+   "total": 73,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "制造生产",
+    "能源环境"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 70,
+   "cited_pct": 38
+  },
+  {
+   "i": 10,
+   "key": "doi:10.3724/sp.j.1249.2026.04417",
+   "title": "Multi-objective route optimization for post-disaster truck-drone collaborative delivery with hydrogen fuel cell drones",
+   "abstract": "Truck-drone collaborative delivery provides an effective approach for improving the timeliness of post-disaster emergency supply distribution. However, the limited endurance of conventional lithium battery-powered drones restricts the overall efficiency of such systems. To address this limitation, hydrogen fuel cell drones are introduced into the collaborative delivery framework. Considering the potential secondary risks associated with hydrogen under post-disaster road damage conditions, a quantitative risk assessment model is developed. A multi-objective mixed-integer programming model is then formulated to simultaneously minimize transportation cost, deprivation cost, and system risk. To solve the model with complex spatiotemporal coupling characteristics, an improved non-dominated sorting genetic algorithm Ⅱ (INSGA-Ⅱ) is developed. The effectiveness of the proposed model and algorithm is validated using benchmark road network instances. The results indicate that the INSGA-Ⅱ effectively guides the population toward high-quality feasible solutions. Compared with the conventional algorithm, the proposed method reduces the total cost and system risk by 37.23% and 68.13%, respectively. Furthermore, hydrogen fuel cell drones show significant advantages in cost reduction and efficiency improvement due to their extended endurance. The proposed approach provides valuable support for drone type selection and emergency network planning, achieving coordinated optimization of resource utilization and operational rescue safety.",
+   "venue": "JOURNAL OF SHENZHEN UNIVERSITY SCIENCE AND ENGINEERING",
+   "issn": "1000-2618",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.3724/sp.j.1249.2026.04417",
+   "score_hint": 114.43524,
+   "authors": [
+    "Yu Lina",
+    "Jie L",
+    "Xinping Wu",
+    "Li Qiang",
+    "Luo Qin",
+    "Zheng Huawei"
+   ],
+   "doi": "10.3724/sp.j.1249.2026.04417",
+   "url": "https://doi.org/10.3724/sp.j.1249.2026.04417",
+   "dims": {
+    "rel": 47,
+    "nov": 100,
+    "qual": 73,
+    "method": 56,
+    "insp": 58
+   },
+   "total": 64,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；OpenAlex 与 Crossref 双源命中；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 28,
+   "cited_pct": 38
+  },
+  {
+   "i": 11,
+   "key": "doi:10.12677/ecl.2026.151049",
+   "title": "Optimization of Collaborative Truck-Drone Delivery Routing Considering Carbon Abatement Benefits in E-Commerce Environment",
+   "abstract": "",
+   "venue": "E-Commerce Letters",
+   "issn": "2168-5851",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 107.31218,
+   "authors": [
+    "梦亦 陈"
+   ],
+   "doi": "10.12677/ecl.2026.151049",
+   "url": "https://doi.org/10.12677/ecl.2026.151049",
+   "dims": {
+    "rel": 91,
+    "nov": 100,
+    "qual": 73,
+    "method": 41,
+    "insp": 43
+   },
+   "total": 78,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [
+    "优化建模"
+   ],
+   "domains": [
+    "物流配送",
+    "能源环境",
+    "服务运营"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 6%）；近两年发表，时效性强；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 94,
+   "cited_pct": 38
+  },
+  {
+   "i": 12,
+   "key": "doi:10.3390/app16042016",
+   "title": "A Three-Phase Heuristic for Optimizing Truck-Drone Collaborative Delivery",
+   "abstract": "Truck-drone collaborative delivery has attracted increasing attention as an effective means to enhance flexibility and efficiency in complex distribution systems. However, the resulting Vehicle Routing Problem with Drones (VRPD) is NP-hard, and existing heuristics often struggle to balance solution quality and computational efficiency, especially in large-scale and multi-trip settings. To address these challenges, this paper proposes a Structure-Guided Adaptive Large Neighborhood Search (S-ALNS) framework for truck-drone collaborative routing. The proposed approach explicitly exploits problem-specific structural characteristics through a three-phase solution process. First, balanced initial truck routes are constructed using customer clustering. Second, a structured split-based heuristic reallocates suitable customers from truck routes to a drone service. Third, the solution is further refined within an improved ALNS framework, where a structure-guided repair mechanism based on dynamic programming is introduced to efficiently handle batch customer insertions under coupled capacity and feasibility constraints. Extensive computational experiments on instances of varying scales show that S-ALNS consistently produces near-optimal solutions for small-scale instances used for validation. For medium- and large-scale instances, S-ALNS significantly outperforms classical heuristics, including simulated annealing and a standard ALNS baseline, in terms of solution quality while maintaining competitive in computational efficiency. These results demonstrate the effectiveness of incorporating the problem structure into Adaptive Large Neighborhood Searches for complex truck-drone routing problems.",
+   "venue": "Applied Sciences",
+   "issn": "2076-3417",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 1,
+   "is_oa": true,
+   "oa_url": "https://www.mdpi.com/2076-3417/16/4/2016/pdf?version=1771407263",
+   "score_hint": 76.4895,
+   "authors": [
+    "Ying Wang",
+    "Jicong Duan",
+    "Qin He Zhang",
+    "Yu Ding"
+   ],
+   "doi": "10.3390/app16042016",
+   "url": "https://doi.org/10.3390/app16042016",
+   "dims": {
+    "rel": 75,
+    "nov": 100,
+    "qual": 74,
+    "method": 80,
+    "insp": 62
+   },
+   "total": 79,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "机器学习",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；方法覆盖 优化建模、启发式算法。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 76,
+   "cited_pct": 46
+  },
+  {
+   "i": 13,
+   "key": "doi:10.1016/j.tre.2026.104678",
+   "title": "Enabling the multi-LR ability of drones in the multi-visit truck-drone routing problem with pickup and delivery",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2026,
+   "cited": 8,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 70.36765,
+   "authors": [
+    "Sepehr Pasha",
+    "S. Mehdi Sajadifar"
+   ],
+   "doi": "10.1016/j.tre.2026.104678",
+   "url": "https://doi.org/10.1016/j.tre.2026.104678",
+   "dims": {
+    "rel": 63,
+    "nov": 100,
+    "qual": 100,
+    "method": 32,
+    "insp": 67
+   },
+   "total": 72,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；发表于顶刊 TR Part E；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 52,
+   "cited_pct": 60
+  },
+  {
+   "i": 14,
+   "key": "doi:10.1016/j.tre.2026.104975",
+   "title": "Truck-drone collaborative delivery with a mobile drone station trailer",
+   "abstract": "• We propose a novel truck-drone collaboration mechanism. • We study the Traveling Salesman Problem with a Mobile Drone Station Trailer. • We develop a tailored Routing Structure Guided Adaptive Large Neighborhood Search algorithm. • Numerical results demonstrate the effectiveness of the proposed algorithm. • We discuss the operational advantages of the proposed mode over benchmark modes.",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2026,
+   "cited": 6,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.1016/j.tre.2026.104975",
+   "score_hint": 69.137596,
+   "authors": [
+    "Zhiyuan Shi",
+    "Shaozhi Hong",
+    "Ang Li"
+   ],
+   "doi": "10.1016/j.tre.2026.104975",
+   "url": "https://doi.org/10.1016/j.tre.2026.104975",
+   "dims": {
+    "rel": 76,
+    "nov": 100,
+    "qual": 99,
+    "method": 53,
+    "insp": 79
+   },
+   "total": 81,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；发表于顶刊 TR Part E；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 80,
+   "cited_pct": 52
+  },
+  {
+   "i": 15,
+   "key": "doi:10.3724/j.issn.1004-3918.2026.01.007",
+   "title": "Truck and Drone Collaborative Delivery Model Based on Integrated Battery-Swapping Capability",
+   "abstract": "To address the limited flight endurance and inefficient recharging of drones in existing truck and drone collaborative delivery modes in rural areas, this paper proposes a new collaborative delivery model based on integrated battery-swapping capability, which is specifically designed to overcome these operational limitations. The new collaborative delivery model based on integrated battery-swapping functionality integrates the battery-swapping function of drones into existing rural infrastructure that is already available in rural areas. Under this model, there is no need to additionally construct other facilities specifically for drone battery swapping. Through the use of existing rural resources and without any additional facility construction, the proposed model enables drone charging to become more flexible during the delivery process. At the same time, this model avoids the additional costs brought by the construction of charging stations that would otherwise be required. Under the proposed collaborative delivery model, drones replace batteries in villages that are equipped with battery-swapping capability. After battery replacement is completed in villages with battery-swapping capability, drones carry out delivery tasks along pre-planned routes. Meanwhile, trucks transport parcels and batteries from the distribution center to villages with battery-swapping capability. At the same time, trucks collect depleted batteries during the delivery process while completing the transportation of parcels and batteries as part of their assigned tasks. Considering constraints related to both drones and trucks, including payload capacity constraints and endurance constraints, a mixed-integer programming model is established. The mixed-integer programming model is formulated with the objective of minimizing the total cost of the delivery system under the given constraints. To solve the mixed-integer programming model efficiently, a two-stage hybrid algorithm is adopted.In the first stage of the two-stage hybrid algorithm, an improved K-means algorithm is used. During the clustering process, the improved K-means algorithm simultaneously considers the distance from each demand point to the corresponding cluster center and the distance from the distribution center to each cluster center. By considering both the distance between demand points and cluster centers and the distance between the distribution center and cluster centers in the clustering process, the improved K-means algorithm overcomes the defect of the traditional K-means algorithm, which ignores the degree of closeness between the distribution center and the cluster centers. Through this improvement, global optimality is ensured. In the second stage of the two-stage hybrid algorithm, a genetic algorithm with adaptive control of crossover segment length is introduced. By retaining longer crossover segments during the crossover operation, the genetic algorithm maintains the superior structure of parent solutions. Through retaining longer crossover segments, the transmission of high-quality genes is accelerated during the evolutionary process of the genetic algorithm.The results of case study analysis show that, compared with existing truck and drone collaborative delivery modes and truck-only delivery modes, the truck and drone collaborative delivery model based on integrated battery-swapping functionality achieves improved performance. In terms of delivery cost, delivery costs are reduced by 22.55% and 39.07%, respectively. In terms of delivery time, delivery time is reduced by 32.7% and 68.43%, respectively. In addition, the two-stage hybrid algorithm exhibits stronger optimization capability and faster solution speed.",
+   "venue": "He'nan kexue",
+   "issn": "1004-3918",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://www.sciengine.com/doi/pdf/8FEABBC15BAF45C6A41A16BB70988024",
+   "score_hint": 68.74595,
+   "authors": [
+    "Xiaoyun MA",
+    "Le LI",
+    "Mengying WANG",
+    "Zhijing SHI"
+   ],
+   "doi": "10.3724/j.issn.1004-3918.2026.01.007",
+   "url": "https://doi.org/10.3724/j.issn.1004-3918.2026.01.007",
+   "dims": {
+    "rel": 45,
+    "nov": 100,
+    "qual": 73,
+    "method": 80,
+    "insp": 58
+   },
+   "total": 67,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "机器学习",
+    "案例与综述"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；方法覆盖 优化建模、启发式算法；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 24,
+   "cited_pct": 38
+  },
+  {
+   "i": 16,
+   "key": "doi:10.1016/j.tre.2026.105235",
+   "title": "Multi-trip truck-drone routing problem with simultaneous pickup and delivery and temporal constraints",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://www.sciencedirect.com/science/article/pii/S1366554526005739/pdf",
+   "score_hint": 67.39413,
+   "authors": [
+    "Yongqi Luo",
+    "Yanru Chen",
+    "M.I.M. Wahab"
+   ],
+   "doi": "10.1016/j.tre.2026.105235",
+   "url": "https://doi.org/10.1016/j.tre.2026.105235",
+   "dims": {
+    "rel": 62,
+    "nov": 100,
+    "qual": 98,
+    "method": 32,
+    "insp": 63
+   },
+   "total": 71,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；发表于顶刊 TR Part E；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 48,
+   "cited_pct": 38
+  },
+  {
+   "i": 17,
+   "key": "doi:10.1109/tai.2026.3662657",
+   "title": "Collaborative Truck-Drone Routing With Multivisit via Surrogate-Assisted Bi-Level Optimization",
+   "abstract": "The development of drone techniques has extensive applications to fields like last-mile parcel delivery. For economic and efficiency advantages, collaborative truck-drone systems have attracted great attention and formulated as truck-drone routing problems. In this paper, a multi-visit traveling salesman problem with drones is investigated. We decompose it into a two-layer structure and formulate it as a new bi-level model (Bi-MTSPD). The major advantage of the bi-level model is its ability to represent the complex interactions between truck and drone routes by dispatching the drones under the premise of truck routes. To solvethe bi-level model, we propose a novel surrogate-assisted bi-level optimization method. The upper-level subproblem can be treated as a traveling salesman problem with customer assignment, and high-quality truck routes are identified by the K-nearest neighbor-based surrogate model with newly proposed features in order to allocate more computational resources to promising upper-level solutions. For the lower-level drone location routing problem (DLR), a customized memetic algorithm is developed to optimize the drone routes for the corresponding truck route. Comprehensive experimental results show that the proposed algorithm significantly outperforms the existing state-of-the-art algorithms across most benchmark instances. Further analysis verifies the congruence of the bi-level optimization for MTSP-D and the effectiveness of upper-level and lower-level solvers.",
+   "venue": "IEEE Transactions on Artificial Intelligence",
+   "issn": "2691-4581",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 1,
+   "is_oa": true,
+   "oa_url": "https://www.authorea.com/doi/pdf/10.22541/au.176038131.17106095/v1",
+   "score_hint": 67.1033,
+   "authors": [
+    "Ruonan Zhai",
+    "Xuejun Zhang",
+    "Yi Mei",
+    "Wenbo Du",
+    "Tong Guo",
+    "Tao Song"
+   ],
+   "doi": "10.1109/tai.2026.3662657",
+   "url": "https://doi.org/10.1109/tai.2026.3662657",
+   "dims": {
+    "rel": 76,
+    "nov": 100,
+    "qual": 74,
+    "method": 71,
+    "insp": 62
+   },
+   "total": 78,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；方法覆盖 优化建模、启发式算法。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 80,
+   "cited_pct": 46
+  },
+  {
+   "i": 18,
+   "key": "doi:10.52693/jsas.1474515",
+   "title": "Collaborative Truck/Drone Routing Problem: An Application to Disaster Logistics",
+   "abstract": "This study focuses on collaborative UAV/UGV routing problem in emergency logistics aiming to optimize the coordinated delivery efforts of both vehicles during disaster situations. By using a mixed integer model the study identifies the best delivery points and assigns specific drones to transport medical supplies to designated emergency assembly points. The research methodically assesses how UAV speed, UGV stops and cluster numbers affect delivery time. The results show that increasing UAV speeds and reducing stops and clusters generally lead to deliveries but achieving the time requires a careful balance due to their complex interactions. The study suggests that strategic coordination between UAVs and UGVs can significantly improve the efficiency of emergency logistics systems potentially reducing response times in disaster relief and medical supply deliveries. In conclusion the model highlights the potential for enhancements, in emergency response capabilities that could help save lives and lessen disaster impacts. Future studies should consider adapting the model for conditions and unpredictable scenarios to ensure resilience against demands.",
+   "venue": "İstatistik ve Uygulamalı Bilimler Dergisi",
+   "issn": "2718-0999",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 4,
+   "is_oa": true,
+   "oa_url": "https://dergipark.org.tr/en/download/article-file/3889289",
+   "score_hint": 64.8494,
+   "authors": [
+    "Alparslan Güzey",
+    "Mehmet Hakan Satman"
+   ],
+   "doi": "10.52693/jsas.1474515",
+   "url": "https://doi.org/10.52693/jsas.1474515",
+   "dims": {
+    "rel": 74,
+    "nov": 76,
+    "qual": 74,
+    "method": 38,
+    "insp": 58
+   },
+   "total": 67,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [],
+   "domains": [
+    "物流配送",
+    "医疗健康"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；OpenAlex 与 Crossref 双源命中；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 74,
+   "cited_pct": 50
+  },
+  {
+   "i": 19,
+   "key": "doi:10.3934/jimo.2024130",
+   "title": "Adaptive large multiple neighborhood search for the truck-drone-collection station collaborative delivery problem",
+   "abstract": "To address the shortcomings of rural traditional truck logistics services, such as high distribution costs and low distribution efficiency, we propose a novel truck-drone-collection station collaborative delivery problem (TDCS-CDP). The integer programming model of truck-drone-collection station collaborative delivery is constructed, considering the rural road conditions and the geographical distribution of customers. Decisions are made to determine the routes for the truck and drone, as well as the locations and customer assignments for collection stations, drone launch and recovery nodes. The objective of the TDCS-CDP is to minimize the costs associated with truck-drone travel and collection station operations. To solve this complex problem, we propose an adaptive large multiple neighborhood search (ALMNS) algorithm that explores the solution space using multiple destruction-repair operators and neighborhood operators designed based on the problem structure. At the same time, the iteration period is segmented, and the weight information of the operators in each period is adjusted dynamically, which effectively prevents the algorithm from falling into local optimization. Finally, we conducted extensive computational experiments on a set of instances based on existing benchmarks. Out of 75 instances, ALMNS and Gurobi find 14 and 19 optimal solutions within a given time. However, the average computation time of ALMNS is about 2.76 % of Gurobi. The state-of-the-art algorithm obtains 29 best solutions out of 75 instances, while ALMNS achieves 75 best solutions in less computation time.",
+   "venue": "Journal of Industrial and Management Optimization",
+   "issn": "1547-5816",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 3,
+   "is_oa": true,
+   "oa_url": "http://dx.doi.org/10.3934/jimo.2024130",
+   "score_hint": 64.22748,
+   "authors": [
+    "Qi Zhang",
+    "Renjing Liu"
+   ],
+   "doi": "10.3934/jimo.2024130",
+   "url": "http://dx.doi.org/10.3934/jimo.2024130",
+   "dims": {
+    "rel": 44,
+    "nov": 76,
+    "qual": 74,
+    "method": 62,
+    "insp": 57
+   },
+   "total": 59,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "OpenAlex 与 Crossref 双源命中；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 20,
+   "cited_pct": 48
+  },
+  {
+   "i": 20,
+   "key": "doi:10.3390/su18189419",
+   "title": "Truck–Drone Collaborative Delivery of Emergency Supplies Considering Demand Priority Under Flood Disasters",
+   "abstract": "Flood disasters often disrupt transportation networks and significantly increase the complexity of emergency relief distribution, threatening community sustainability. Existing truck–drone collaborative delivery studies mainly emphasize efficiency improvement while neglecting variations in demand urgency among affected areas, limiting their ability to balance routing efficiency and emergency response priorities. To address this issue, a truck–drone collaborative emergency relief distribution model that incorporates demand priority is proposed. A demand-point priority evaluation framework is first established based on population density, infrastructure damage, and regional economic importance. The entropy weight–TOPSIS method is employed to determine the comprehensive priority score of each demand node. A priority-delay penalty mechanism is then incorporated into the routing process to coordinate demand urgency with delivery efficiency. Accordingly, a bi-objective optimization model is formulated to minimize the total delivery completion time and maximize the comprehensive priority score, and an improved non-dominated sorting genetic algorithm II (INSGA-II) with an external archive is developed to solve the proposed model. A case study based on the May 2026 flood disaster in Shangyou County, Ganzhou, China, covering 15 demand nodes, is carried out. Compared with standard NSGA-II and SPEA2, INSGA-II shortens computational runtime by 9.50% and 29.86% respectively, and generates more diversified and evenly distributed Pareto solutions. Under compromise, priority-oriented and time-oriented decision-making scenarios, INSGA-II raises comprehensive priority scores by 7.27%, 5.26%, 14.09% versus standard NSGA-II and by 5.36%, 4.05%, 1.80% versus SPEA2, while maintaining competitive delivery-time performance. The proposed method provides effective decision support for emergency resource allocation and truck–drone collaborative emergency logistics in flood disasters.",
+   "venue": "Sustainability",
+   "issn": "2071-1050",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.3390/su18189419",
+   "score_hint": 63.43515,
+   "authors": [
+    "Tianrun Qin",
+    "Liang’an Huo",
+    "Nan Chen"
+   ],
+   "doi": "10.3390/su18189419",
+   "url": "https://doi.org/10.3390/su18189419",
+   "dims": {
+    "rel": 68,
+    "nov": 100,
+    "qual": 73,
+    "method": 74,
+    "insp": 58
+   },
+   "total": 75,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "案例与综述",
+    "博弈与决策"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；方法覆盖 优化建模、启发式算法。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 66,
+   "cited_pct": 38
+  },
+  {
+   "i": 21,
+   "key": "doi:10.3389/frsc.2026.1798928",
+   "title": "Hybrid metaheuristic optimization for multi-criteria truck–drone collaborative routing in sustainable supply chains",
+   "abstract": "Background Last-mile logistics accounts for approximately 28% of total logistics costs and is a major contributor to urban carbon emissions. The integration of drones with electric trucks offers a path toward more efficient and sustainable delivery, but the resulting Truck–Drone Collaborative Routing Problem (TDCRP) is NP-hard, combining binary customer-to-mode assignment, route sequencing, and drone sortie scheduling into a single combinatorial challenge that exact methods cannot solve at realistic instance sizes. Objective This paper proposes a novel Hybrid ACO+BOA algorithm—the first to couple Ant Colony Optimisation (ACO) with the Butterfly Optimisation Algorithm (BOA) for any routing problem—to simultaneously minimize truck distance, delivery makespan, and carbon emissions in the TDCRP. Methods ACO constructs 20 route sets per iteration using pheromone-heuristic guided selection. BOA refines the entire population using fragrance-scaled guided Or-opt relocation—a discrete analog of the continuous BOA position update—with greedy acceptance. Pheromone deposits are drawn from BOA-refined solutions, creating a reinforcing feedback loop. Five benchmark CVRP instances were evaluated against Pure ACO, BOA, PSO, and ABC over 20 independent runs each. A 33-configuration sensitivity analysis identified the optimal parameter set. Full non-parametric statistical validation was performed (Friedman, Nemenyi, Wilcoxon with Cohen's d ). Results The Hybrid achieved the lowest or statistically equivalent normalized combined objective on all five instances, with significant superiority on P-series instances. On P-n101-k4, it recorded a mean normalized objective of 0.2267 ± 0.0046—reductions of 5.2%, 63.6%, 72.4%, and 69.3% relative to ACO, BOA, PSO, and ABC, respectively. On A-series instances, the Hybrid was statistically equivalent to Pure ACO ( p &gt;0.19), reflecting structural characteristics where short per-vehicle routes leave limited scope for BOA refinement. The Hybrid was significantly superior to BOA, PSO, and ABC on all instances ( p &lt; 0.001, | d | = 13.7–47.8). Drone sorties were 1.9–3.1 × higher than non-ACO baselines, directly reducing fleet-level emission. Conclusion Tightly coupling pheromone-guided construction with fragrance-scaled exploitation yields consistent, statistically validated improvements over all single-algorithm baselines. The algorithm provides a practical, scalable framework for sustainable last-mile logistics planning with computation times of 30–49 seconds remaining within daily scheduling horizons.",
+   "venue": "Frontiers in Sustainable Cities",
+   "issn": "2624-9634",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://www.frontiersin.org/journals/sustainable-cities/articles/10.3389/frsc.2026.1798928/pdf",
+   "score_hint": 63.307304,
+   "authors": [
+    "K. N. Mayuri",
+    "M. Gowsalya"
+   ],
+   "doi": "10.3389/frsc.2026.1798928",
+   "url": "https://doi.org/10.3389/frsc.2026.1798928",
+   "dims": {
+    "rel": 63,
+    "nov": 100,
+    "qual": 73,
+    "method": 62,
+    "insp": 58
+   },
+   "total": 71,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送",
+    "能源环境"
+   ],
+   "source_tags": [
+    "crossref",
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；OpenAlex 与 Crossref 双源命中。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 52,
+   "cited_pct": 38
+  },
+  {
+   "i": 22,
+   "key": "doi:10.1016/j.tre.2024.103802",
+   "title": "Dynamic collaborative truck-drone delivery with en-route synchronization and random requests",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2024,
+   "cited": 58,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 158.74515,
+   "authors": [
+    "Haipeng Cui",
+    "Keyu Li",
+    "Shuai Jia",
+    "Qiang Meng"
+   ],
+   "doi": "10.1016/j.tre.2024.103802",
+   "url": "https://doi.org/10.1016/j.tre.2024.103802",
+   "dims": {
+    "rel": 50,
+    "nov": 76,
+    "qual": 100,
+    "method": 32,
+    "insp": 63
+   },
+   "total": 61,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 TR Part E；被引 58 次，影响力较高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 34,
+   "cited_pct": 96
+  },
+  {
+   "i": 23,
+   "key": "doi:10.1038/s41598-024-83149-1",
+   "title": "Research on truck-drone collaborative route planning for rural logistics delivery services",
+   "abstract": "This study investigates the implementation of collaborative route planning between trucks and drones within rural logistics to improve distribution efficiency and service quality. The paper commences with an analysis of the unique characteristics and challenges inherent in rural logistics, emphasizing the limitations of traditional methods while highlighting the advantages of integrating truck and drone technologies. It proceeds to review the current state of development for these two technologies and presents case studies that illustrate their application in rural logistics. Building on this analysis, a collaborative path planning method is proposed, establishing a path optimization model and designing an enhanced simulated annealing algorithm. The effectiveness of this approach is validated through simulation experiments, which reveal that the collaborative delivery system for trucks and drones can significantly boost efficiency, lower costs, and improve service quality. In conclusion, the research findings and potential future research directions are discussed to offer theoretical insights and practical guidance for further innovations in rural logistics technology.",
+   "venue": "Scientific Reports",
+   "issn": "2045-2322",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 30,
+   "is_oa": true,
+   "oa_url": "https://www.nature.com/articles/s41598-024-83149-1.pdf",
+   "score_hint": 151.19699,
+   "authors": [
+    "Yong Wang",
+    "Siyuan Yang",
+    "Xi Vincent Wang",
+    "Lihui Wang"
+   ],
+   "doi": "10.1038/s41598-024-83149-1",
+   "url": "https://doi.org/10.1038/s41598-024-83149-1",
+   "dims": {
+    "rel": 47,
+    "nov": 76,
+    "qual": 78,
+    "method": 74,
+    "insp": 63
+   },
+   "total": 63,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "仿真与系统",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "方法覆盖 优化建模、启发式算法；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 28,
+   "cited_pct": 86
+  },
+  {
+   "i": 24,
+   "key": "doi:10.1080/15568318.2025.2493138",
+   "title": "Route optimization of green truck-drone collaborative delivery with multiple drops considering demand distribution",
+   "abstract": "In recent years, drones have been used to assist delivering small goods as a solution to traffic jams and air pollutions to serve the purpose of effective and sustainable delivery. Thus, a green truck-drone collaborative delivery routing problem with multiple drops is studied in this paper. A multi-objective truck-drone route planning model considering carbon emissions and traveling time is developed. Compared to most of the existing research in which drones can deliver only one node per trip, this study extends the model to a more complicated realistic situation that drones deliver multiple drops per trip. A NSGA-II algorithm is designed to address the above-described problem. Then, cases with clustered, semi-clustered and randomly distributed customers are analyzed to find out the influence of customer distribution characteristics on the environmental performance and time efficiency. As numerical experiment results show, the improved collaborative delivery model significantly reduces carbon emissions and improves delivery efficiency, especially when customers are randomly distributed or semi-clustered. Finally, the optimal traveling speed range is obtained through the speed sensitivity analysis, which provide a sustainable decision-making basis for daily operations.",
+   "venue": "International Journal of Sustainable Transportation",
+   "issn": "1556-8318",
+   "top_name": "",
+   "is_top": false,
+   "year": 2025,
+   "cited": 7,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 142.84793,
+   "authors": [
+    "Lan Zhu",
+    "Ting Wang",
+    "Xiao Ma",
+    "Yang Lu",
+    "Xuming Lou"
+   ],
+   "doi": "10.1080/15568318.2025.2493138",
+   "url": "https://doi.org/10.1080/15568318.2025.2493138",
+   "dims": {
+    "rel": 67,
+    "nov": 88,
+    "qual": 75,
+    "method": 65,
+    "insp": 47
+   },
+   "total": 70,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "实证与统计",
+    "博弈与决策"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行",
+    "能源环境"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 62,
+   "cited_pct": 58
+  },
+  {
+   "i": 25,
+   "key": "doi:10.1109/tits.2026.3704201",
+   "title": "An Optimized Collaborative Routing Model for Trucks and Heterogeneous Drones in Delivery and Pickup Services",
+   "abstract": "Addressing the “last mile” logistics challenge, this paper proposes a truck and heterogeneous drones collaborative routing problem (HCRP-DP) to efficiently meet the growing customer demands for delivery and pickup services at the lowest cost. An adaptive large neighborhood search algorithm based on the simulated annealing framework (ALNS-SA), is designed to solve HCRP-DP. It incorporates asynchronous drone operations and heterogeneous drone characteristics, with seven destructive operators and a heuristic repair operator to explore the solution space and speed up local search convergence. Comparatively, ALNS-SA significantly outperforms a state-of-the-art algorithm in convergence. The HCRP-DP model not only reduces service costs but also offers insights into how varying customer proportions affect model performance, providing valuable practical application guidance.",
+   "venue": "IEEE Transactions on Intelligent Transportation Systems",
+   "issn": "1524-9050",
+   "top_name": "IEEE TITS",
+   "is_top": true,
+   "year": 2026,
+   "cited": 14,
+   "is_oa": true,
+   "oa_url": "https://erepo.uef.fi/bitstreams/d3a80c10-11f3-4e03-92b5-a45884057c53/download",
+   "score_hint": 142.36633,
+   "authors": [
+    "Biao Xu",
+    "Qiwen Lu",
+    "Xiao‐Zhi Gao",
+    "Bing Li",
+    "Wenji Li",
+    "Jie He",
+    "Dunwei Gong",
+    "Zhun Fan"
+   ],
+   "doi": "10.1109/tits.2026.3704201",
+   "url": "https://doi.org/10.1109/tits.2026.3704201",
+   "dims": {
+    "rel": 77,
+    "nov": 100,
+    "qual": 99,
+    "method": 53,
+    "insp": 82
+   },
+   "total": 82,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；发表于顶刊 IEEE TITS；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 82,
+   "cited_pct": 70
+  },
+  {
+   "i": 26,
+   "key": "doi:10.1111/itor.70045",
+   "title": "Collaborative delivery problem of trucks and multiple drones: an en‐route operation with flexible launch positions",
+   "abstract": "Abstract Drones are gradually being used in logistics, and collaborative systems combining trucks and drones are proposed for last‐mile delivery. Therefore, it is a meaningful study to improve the efficiency of collaborative delivery of truck–drone system. Based on the truck–drone collaborative delivery problem with en‐route operations, this paper introduces a new concept of flexible launch point, which is to set up multiple non‐customer stops in the truck's route for launching drones. In light of this concept, an en‐route operation with flexible positions in the truck–drone collaborative delivery problem is proposed. The problem is formulated as a mixed integer linear program that aims to minimize customer waiting times, determine the optimal route for the truck with multi‐drones, and establish the optimal flexible launch positions for the drones. We developed a variable neighborhood search algorithm and conducted large‐scale experiments. The experiments have demonstrated that the new collaborative approach maximizes drone utilization, expands the range of drone services, and ensures flexible launch. The en‐route operation with flexible launch positions presented in this paper provides innovative ideas for further application of trucks with multi‐drones in last‐mile delivery. This is also relevant for other scenarios, such as emergency management and routine inspections, which involve collaboration between trucks and drones.",
+   "venue": "International Transactions in Operational Research",
+   "issn": "0969-6016",
+   "top_name": "",
+   "is_top": false,
+   "year": 2025,
+   "cited": 11,
+   "is_oa": true,
+   "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/itor.70045",
+   "score_hint": 135.7961,
+   "authors": [
+    "Bing Han",
+    "Tianze Chi",
+    "Zhengyi Sun"
+   ],
+   "doi": "10.1111/itor.70045",
+   "url": "https://doi.org/10.1111/itor.70045",
+   "dims": {
+    "rel": 48,
+    "nov": 88,
+    "qual": 76,
+    "method": 47,
+    "insp": 60
+   },
+   "total": 61,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 30,
+   "cited_pct": 68
+  },
+  {
+   "i": 27,
+   "key": "doi:10.1109/tits.2026.3711461",
+   "title": "Fast Bi-Level Task Assignment and Routing for Truck-Drone Collaborative Delivery",
+   "abstract": "The emerging use of drones in last-mile delivery (e.g., for e-commerce and emergency services) creates a need to optimize collaborative operations among trucks, drones, and supporting facilities. In this paper, we focus on the Cumulative Vehicle Routing Problem with Drone Stations (CumVRP-DS), which jointly optimizes customer (task) assignment and vehicle routing in the context of drone-station-assisted last-mile delivery. The objective is to minimize the total customer waiting time. To solve this problem, we first formulate it as a Mixed Integer Linear Programming (MILP) model, which extends the multi-level network (MLN) formulation to incorporate drone-stations. Second, we propose an improved bi-level meta-heuristic algorithm, designed to reduce the search effort required at the inner routing layer. Computational experiments show that the proposed MILP formulation is able to produce theoretically-guaranteed optimal results for instances with up to 100 customers with Gurobi, and the improved bi-level meta-heuristic achieves significantly better solutions on large instances (over 100 customers) with an average 4.4% reduction in objective values. Furthermore, our analysis provides key operational insights: it demonstrates that (1) similar task assignments often lead to similar (near-)optimal truck routes, justifying the route-reconstruction strategy, and (2) inner-layer routing can be effectively handled by reconstruction alone, suggesting computational resources should be prioritized for the task-assignment sub-problem. These insights offer an effective solution framework and practical guidelines for similar drone-assisted delivery optimization problems.",
+   "venue": "IEEE Transactions on Intelligent Transportation Systems",
+   "issn": "1524-9050",
+   "top_name": "IEEE TITS",
+   "is_top": true,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.1109/tits.2026.3711461",
+   "score_hint": 134.0564,
+   "authors": [
+    "Zonghan He",
+    "Jian Yang",
+    "Qi Gang Zhao",
+    "Haobin Yang",
+    "X W Chen",
+    "Xingyu Zhou",
+    "Yuhui Shi"
+   ],
+   "doi": "10.1109/tits.2026.3711461",
+   "url": "https://doi.org/10.1109/tits.2026.3711461",
+   "dims": {
+    "rel": 80,
+    "nov": 100,
+    "qual": 96,
+    "method": 71,
+    "insp": 60
+   },
+   "total": 83,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "服务运营"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "与检索式匹配度高（本批相关度前 12%）；发表于顶刊 IEEE TITS；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 88,
+   "cited_pct": 38
+  },
+  {
+   "i": 28,
+   "key": "doi:10.3390/s25103087",
+   "title": "Research on Collaborative Delivery Path Planning for Trucks and Drones in Parcel Delivery",
+   "abstract": "With the rapid development of e-commerce, the logistics industry faces multiple challenges, including high delivery costs, long delivery times, and a shortage of delivery personnel. Truck-drone collaborative delivery combines the high load capacity of trucks with the flexibility and speed of drones, offering an innovative and practical solution. This paper proposes the Truck-Drone Collaborative Delivery Routing Problem (TDCRPTW) and develops a multi-objective optimization model that minimizes delivery costs and maximizes time reliability under capacity and time window constraints in multi-truck, multi-drone scenarios. To solve the model, an innovative two-stage solution strategy that combines the adaptive k-means++ clustering algorithm with temperature-controlled memory simulated annealing (TCMSA) is proposed. The experimental results demonstrate that the proposed model reduces delivery costs by 10% to 50% and reduces delivery time by 15% to 40%, showcasing the superiority of the truck-drone collaborative delivery model. Moreover, the proposed algorithm demonstrates outstanding performance and reliability across multiple dimensions. Therefore, the proposed approach provides an efficient solution to the truck-drone collaborative delivery problem and offers valuable insights for enhancing the efficiency and reliability of e-commerce logistics systems.",
+   "venue": "Sensors",
+   "issn": "1424-8220",
+   "top_name": "",
+   "is_top": false,
+   "year": 2025,
+   "cited": 11,
+   "is_oa": true,
+   "oa_url": "https://www.mdpi.com/1424-8220/25/10/3087/pdf?version=1747146885",
+   "score_hint": 99.249115,
+   "authors": [
+    "Ting Fu",
+    "Sheng Li",
+    "Zhiguo Li"
+   ],
+   "doi": "10.3390/s25103087",
+   "url": "https://doi.org/10.3390/s25103087",
+   "dims": {
+    "rel": 68,
+    "nov": 88,
+    "qual": 76,
+    "method": 80,
+    "insp": 60
+   },
+   "total": 74,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "机器学习",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "服务运营"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；方法覆盖 优化建模、启发式算法。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 66,
+   "cited_pct": 68
+  },
+  {
+   "i": 29,
+   "key": "doi:10.1016/j.cie.2024.110468",
+   "title": "Collaborative truck–drone–motorcycle delivery of emergency supplies for mountain wildfire suppression",
+   "abstract": "",
+   "venue": "Computers & Industrial Engineering",
+   "issn": "0360-8352",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 28,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 81.68938,
+   "authors": [
+    "Jiahao Cheng",
+    "Yufeng Zhou",
+    "Changzhi Wu",
+    "Zhiguo Li"
+   ],
+   "doi": "10.1016/j.cie.2024.110468",
+   "url": "https://doi.org/10.1016/j.cie.2024.110468",
+   "dims": {
+    "rel": 45,
+    "nov": 76,
+    "qual": 78,
+    "method": 32,
+    "insp": 45
+   },
+   "total": 54,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "综合表现均衡，可作为背景阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 24,
+   "cited_pct": 82
+  },
+  {
+   "i": 30,
+   "key": "doi:10.1016/j.tre.2025.103974",
+   "title": "Multi-agent deep reinforcement learning-based truck-drone collaborative routing with dynamic emergency response",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2025,
+   "cited": 88,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 79.59806,
+   "authors": [
+    "Wenhao Peng",
+    "Dujuan Wang",
+    "Yunqiang Yin",
+    "T.C.E. Cheng"
+   ],
+   "doi": "10.1016/j.tre.2025.103974",
+   "url": "https://doi.org/10.1016/j.tre.2025.103974",
+   "dims": {
+    "rel": 69,
+    "nov": 88,
+    "qual": 100,
+    "method": 41,
+    "insp": 70
+   },
+   "total": 73,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [
+    "机器学习"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；发表于顶刊 TR Part E；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 68,
+   "cited_pct": 98
+  },
+  {
+   "i": 31,
+   "key": "doi:10.1080/19427867.2025.2543379",
+   "title": "Drone-truck collaborative scheduling with simultaneous delivery and pickup under uncertainty",
+   "abstract": "This work investigates a drone-truck collaborative scheduling problem, where customer packages may require delivery or pickup for transportation to the distribution center. In this study, the transportation speed of drones is subject to uncertainty arising from variables such as wind direction and intensity, etc. For solving the problem, a K-means with elbow method is firstly employed to cluster the 2D coordinate of customers, yielding cluster centers that represent the points requiring traversal by the truck. Subsequently, a mixed integer programming model with the objective of minimizing the weighted sum of the total transportation time and the total energy consumption of drones is formulated. For such the model, both the truck routing path and the drone scheduling plan for delivery and pickup are jointly optimized at the tactical level. To solve the model under uncertainty, a data-driven robust optimization approach is developed. Numerical experiments are conducted to demonstrate the effectiveness of our approaches.",
+   "venue": "Transportation Letters",
+   "issn": "1942-7867",
+   "top_name": "",
+   "is_top": false,
+   "year": 2025,
+   "cited": 9,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 73.82707,
+   "authors": [
+    "Zhaojie Wang",
+    "Feifeng Zheng",
+    "Yang Sui",
+    "Hongjie Pan",
+    "Hejie Zhang",
+    "Ming Liu"
+   ],
+   "doi": "10.1080/19427867.2025.2543379",
+   "url": "https://doi.org/10.1080/19427867.2025.2543379",
+   "dims": {
+    "rel": 66,
+    "nov": 88,
+    "qual": 75,
+    "method": 56,
+    "insp": 47
+   },
+   "total": 68,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "能源环境"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 60,
+   "cited_pct": 62
+  },
+  {
+   "i": 32,
+   "key": "doi:10.1142/s0217595924400165",
+   "title": "Collaborative Routing Optimization for Heterogeneous Trucks–Drones Under Urban Regional Restrictions",
+   "abstract": "Collaborative truck–drone delivery is a crucial model of drone involvement in urban logistics, addressing drone limitations in load capacity and endurance. However, regional constraints, including damage, blockades, pollution, and epidemics, pose routing challenges for trucks and drones. This study integrates regional restrictions into the heterogeneous truck–drone routing problem, presenting a mixed-integer programming model for cost minimization. To tackle complexity, we introduce an enhanced gray wolf optimization algorithm (EGWO), which improves the initial solution through partition scanning and a heuristic insertion algorithm. EGWO effectiveness is confirmed through enhancements in the standard test library. On average, the heterogeneous truck–drone model achieves a 28.31% cost reduction compared to the single-type truck delivery model. Moreover, deep insights into the impacts of multi-type trucks, the number of no-fly zones and the number of restricted traffic zones on the performance of the heterogeneous truck–drone system are discussed.",
+   "venue": "Asia Pacific Journal of Operational Research",
+   "issn": "0217-5959",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 7,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 73.20401,
+   "authors": [
+    "Jiaojiao Gao",
+    "Xiuping Guo"
+   ],
+   "doi": "10.1142/s0217595924400165",
+   "url": "https://doi.org/10.1142/s0217595924400165",
+   "dims": {
+    "rel": 78,
+    "nov": 76,
+    "qual": 75,
+    "method": 62,
+    "insp": 41
+   },
+   "total": 71,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 86,
+   "cited_pct": 58
+  },
+  {
+   "i": 33,
+   "key": "doi:10.3724/sp.j.1249.2026.04377",
+   "title": "Research progress in truck-drone collaborative route planning: a systematic review",
+   "abstract": "To systematically review the research progress in truck-drone collaborative routing, 386 relevant publications retrieved from the Web of Science Core Collection were analyzed using VOSviewer for bibliometric and scientific knowledge mapping, complemented by a qualitative review of representative studies. The development trajectory and knowledge base of this research field were examined from five perspectives: annual publication trends, country and regional distributions, source journals, document co-citation networks, and keyword co-occurrence. Based on the keyword co-occurrence analysis, a research framework encompassing problem types, model development, solution algorithms, and application scenarios was established. The results show that truck-drone collaborative route planning has evolved from the traveling salesman problem (TSP) and the vehicle routing problem (VRP), with research settings gradually expanding from early single-truck-single-drone collaborative delivery to more complex scenarios involving multiple trucks and drones, flexible launch and recovery, multiple customer visits, integrated pickup and delivery, and dynamic operations. Model development have formed a comprehensive constraint framework centered on objective functions, network constraints, resource constraints, service constraints, truck-drone coordination and synchronization constraints, and uncertainty constraints. Solution approaches have evolved through the parallel development of exact algorithms, heuristic and metaheuristic methods, and learning-based methods. In terms of applications, relevant studies have extended from urban last-mile delivery to remote-area logistics, medical logistics, humanitarian logistics, agricultural and forestry operations, and infrastructure inspection. With the rapid advancement of air-ground collaborative transportation technologies, this systematic review not only clarifies the technical evolution of truck-drone collaborative route planning but also provides references for future model development and algorithm design in real-world applications, thereby facilitating the translation of theoretical research into engineering practice.",
+   "venue": "JOURNAL OF SHENZHEN UNIVERSITY SCIENCE AND ENGINEERING",
+   "issn": "1000-2618",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.3724/sp.j.1249.2026.04377",
+   "score_hint": 72.45605,
+   "authors": [
+    "Cui Haipeng",
+    "Li Huan",
+    "Zhang Xuxin",
+    "Chen Xiangsheng",
+    "Hu Mingwei"
+   ],
+   "doi": "10.3724/sp.j.1249.2026.04377",
+   "url": "https://doi.org/10.3724/sp.j.1249.2026.04377",
+   "dims": {
+    "rel": 66,
+    "nov": 100,
+    "qual": 73,
+    "method": 56,
+    "insp": 50
+   },
+   "total": 71,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "启发式算法",
+    "案例与综述"
+   ],
+   "domains": [
+    "物流配送",
+    "医疗健康"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 60,
+   "cited_pct": 38
+  },
+  {
+   "i": 34,
+   "key": "doi:10.1016/j.cor.2023.106514",
+   "title": "Parallel drone scheduling vehicle routing problems with collective drones",
+   "abstract": "We study last-mile delivery problems where trucks and drones collaborate to deliver goods to final customers. In particular, we focus on problem settings where either a single truck or a fleet with several homogeneous trucks work in parallel to drones, and drones have the capability of collaborating for delivering missions. This cooperative behaviour of the drones, which are able to connect to each other and work together for some delivery tasks, enhance their potential, since connected drone has increased lifting capabilities and can fly at higher speed, overcoming the main limitations of the setting where the drones can only work independently. In this work, we contribute a Constraint Programming model and a valid inequality for the version of the problem with one truck, namely the Parallel Drone Scheduling Traveling Salesman Problem with Collective Drones and we introduce for the first time the variant with multiple trucks, called the Parallel Drone Scheduling Vehicle Routing Problem with Collective Drones. For the latter version of the problem, we propose two Constraint Programming models and a Mixed Integer Linear Programming model. An extensive experimental campaign leads to state-of-the-art results for the problem with one truck and some understanding of the presented models’ behaviour on the version with multiple trucks. Some insights about future research are finally discussed.",
+   "venue": "Computers & Operations Research",
+   "issn": "0305-0548",
+   "top_name": "COR",
+   "is_top": true,
+   "year": 2023,
+   "cited": 54,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.1016/j.cor.2023.106514",
+   "score_hint": 71.50463,
+   "authors": [
+    "Roberto Montemanni",
+    "Mauro Dell’Amico",
+    "Andrea Corsini"
+   ],
+   "doi": "10.1016/j.cor.2023.106514",
+   "url": "https://doi.org/10.1016/j.cor.2023.106514",
+   "dims": {
+    "rel": 49,
+    "nov": 64,
+    "qual": 100,
+    "method": 62,
+    "insp": 76
+   },
+   "total": 64,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 COR；被引 54 次，影响力较高；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 32,
+   "cited_pct": 94
+  },
+  {
+   "i": 35,
+   "key": "doi:10.3390/drones10070476",
+   "title": "Data-Driven Optimization of Truck–Drone Collaborative Delivery with Shared Fleet Allocation",
+   "abstract": "Truck–drone collaborative delivery (TDCD) refers to a coordinated logistics paradigm in which drones are deployed from delivery trucks to serve nearby customers, enabling parallelized last-mile operations. Much of the existing TDCD literature relies on synthetic datasets and manufacturer-declared drone specifications, which may overestimate performance in real-world operations. This study develops an empirically informed, route-based Mixed-Integer Linear Programming (MILP) framework that integrates empirically derived drone performance models with constrained fleet allocation decisions. Using delivery routes from the Amazon Last Mile Routing Dataset (2021), we consider three electric trucks departing from a common depot, each equipped with drones drawn from a shared fleet of 10 units. Drone flight time and energy consumption are modeled using regression functions calibrated with real flight test data from a DJI Matrice 100 platform, capturing observed variations due to payload and operational conditions. The optimization jointly determines truck stop selection, customer assignments, and drone allocation while minimizing a weighted combination of route makespan, total energy consumption, and fleet size under operational and energy constraints. The results indicate that coordinated truck–drone delivery can achieve substantial reductions in both delivery completion time and energy consumption relative to conventional truck-only delivery. These findings demonstrate the effectiveness of coordinated truck–drone operations under realistic constraints and highlight the importance of data-driven modeling and fleet-level resource allocation in improving last-mile delivery performance.",
+   "venue": "Drones",
+   "issn": "2504-446X",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://doi.org/10.3390/drones10070476",
+   "score_hint": 70.23339,
+   "authors": [
+    "Didem Cicek",
+    "Murat Şimşek",
+    "Burak Kantarcı"
+   ],
+   "doi": "10.3390/drones10070476",
+   "url": "https://doi.org/10.3390/drones10070476",
+   "dims": {
+    "rel": 58,
+    "nov": 100,
+    "qual": 73,
+    "method": 62,
+    "insp": 50
+   },
+   "total": 68,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行",
+    "能源环境",
+    "服务运营"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 44,
+   "cited_pct": 38
+  },
+  {
+   "i": 36,
+   "key": "doi:10.1016/j.tre.2023.103377",
+   "title": "Optimization of the drone-assisted pickup and delivery problem",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2023,
+   "cited": 95,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 70.18203,
+   "authors": [
+    "Timothy Mulumba",
+    "Ali H. Diabat"
+   ],
+   "doi": "10.1016/j.tre.2023.103377",
+   "url": "https://doi.org/10.1016/j.tre.2023.103377",
+   "dims": {
+    "rel": 19,
+    "nov": 64,
+    "qual": 100,
+    "method": 41,
+    "insp": 64
+   },
+   "total": 48,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [
+    "优化建模"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 TR Part E；被引 95 次，影响力较高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 4,
+   "cited_pct": 100
+  },
+  {
+   "i": 37,
+   "key": "doi:10.1016/j.procir.2026.04.006",
+   "title": "Route Optimization for a Multi-Truck and Drone Delivery Model Based on a Two-Stage Method",
+   "abstract": "To enhance the efficiency of last-mile delivery and reduce logistics costs, this study develops a two-stage optimization model for collaborative routing with multiple trucks and a single drone. Considering drone payload, endurance limits, and coordination complexity, a multi-objective mixed-integer programming (MIP) model is formulated to minimize total operational cost, including truck dispatching, drone energy use, takeoff and landing, parking setup, and time penalties. To address the computational intractability, a two-stage heuristic is designed. In the first stage, an improved K-means algorithm determines truck parking locations and service areas under the drone’s maximum flight range. In the second stage, a Discrete Adaptive Firefly Algorithm (DAFA) with adaptive step-size and local search strategies optimizes multi-customer drone paths. Simulation experiments with 25 customers in Hongshan District, Wuhan, demonstrate significant advantages. Compared with Ant Colony Optimization (ACO) and Particle Swarm Optimization (PSO), DAFA improves convergence speed by 66.7% and 58.3%, respectively, while enhancing global exploration. Under collaborative delivery, route length decreases by 34.27% (96.11 km to 63.17 km), and total cost reduces by 31.78% (188.05 CNY to 128.29 CNY). The proposed approach provides decision support for efficient, low-carbon logistics and is extendable to dynamic and multi-drone scenarios.",
+   "venue": "Procedia CIRP",
+   "issn": "2212-8271",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://www.sciencedirect.com/science/article/pii/S2212827126010632/pdf",
+   "score_hint": 70.17613,
+   "authors": [
+    "Jianan Chen",
+    "Yong Wang"
+   ],
+   "doi": "10.1016/j.procir.2026.04.006",
+   "url": "https://doi.org/10.1016/j.procir.2026.04.006",
+   "dims": {
+    "rel": 56,
+    "nov": 100,
+    "qual": 73,
+    "method": 80,
+    "insp": 50
+   },
+   "total": 70,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "仿真与系统",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行",
+    "能源环境"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；方法覆盖 优化建模、启发式算法；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 40,
+   "cited_pct": 38
+  },
+  {
+   "i": 38,
+   "key": "doi:10.1016/j.tre.2025.104425",
+   "title": "Optimal design for an urban truck-drone collaborative delivery system enhanced with relay points",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2025,
+   "cited": 15,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 69.73368,
+   "authors": [
+    "Hongtai Yang",
+    "Jianzhang Wu",
+    "Zhaolin Zhang",
+    "Xiaobo Liu",
+    "Andrea D’Ariano"
+   ],
+   "doi": "10.1016/j.tre.2025.104425",
+   "url": "https://doi.org/10.1016/j.tre.2025.104425",
+   "dims": {
+    "rel": 43,
+    "nov": 88,
+    "qual": 100,
+    "method": 32,
+    "insp": 58
+   },
+   "total": 60,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 TR Part E；近两年发表，时效性强；载体层级高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 18,
+   "cited_pct": 72
+  },
+  {
+   "i": 39,
+   "key": "doi:10.1109/tits.2024.3350876",
+   "title": "Collaborative Intelligent Delivery With One Truck and Multiple Heterogeneous Drones in COVID-19 Pandemic Environment",
+   "abstract": "The outbreak of COVID-19 has caused a serious impact on the traditional logistics industry. Considering that the truck-drone collaborative delivery system can both reduce the risk of COVID-19 propagation and deliver supplies in a cost effective and timely manner, this paper introduces the Multiple visits Travelling Salesman Problem with Multiple Heterogeneous Drones (MTSP-MHD). The model allows a truck to carry a fleet of heterogeneous multi-visit drones for cooperative deliveries, where the drones are capable of delivering to multiple customers on a single route and the flight is restricted by energy consumption and payload constraints. To solve MTSP-MHD, we develop an approach that combines K-Means$++$clustering, Nearest neighbor search and Greedy strategies (KNG) to construct feasible solutions. Meanwhile, an Improved Artificial Bee Colony algorithm combining Metropolis acceptance criterion of Simulated Annealing, Tabu list of Tabu Search, and Elite selection strategies (IABC-MTE) is proposed to enhance the quality of solutions. Particularly, three problem-specific neighborhood operators are adopted to search for new solutions. The massive experimental results indicate that IABC-MTE achieves significant improvements over other competitors, with average objective value reductions ranging from 1.81% to 29.16% and standard deviations reduced by 0.04 to 26.44. Finally, the influencing factors of the drone fleet, the performance of different drone fleets and delivery modes are evaluated in detail.",
+   "venue": "IEEE Transactions on Intelligent Transportation Systems",
+   "issn": "1524-9050",
+   "top_name": "IEEE TITS",
+   "is_top": true,
+   "year": 2024,
+   "cited": 28,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 69.591736,
+   "authors": [
+    "Yiwen Luo",
+    "Xiaoheng Deng",
+    "Wendong Zhang",
+    "Yan Ke",
+    "Shaohua Wan",
+    "Yurong Qian"
+   ],
+   "doi": "10.1109/tits.2024.3350876",
+   "url": "https://doi.org/10.1109/tits.2024.3350876",
+   "dims": {
+    "rel": 38,
+    "nov": 76,
+    "qual": 100,
+    "method": 71,
+    "insp": 60
+   },
+   "total": 62,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "启发式算法",
+    "机器学习",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行",
+    "能源环境"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 IEEE TITS；载体层级高；方法覆盖 启发式算法、机器学习。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 14,
+   "cited_pct": 82
+  },
+  {
+   "i": 40,
+   "key": "doi:10.1016/j.trc.2025.105322",
+   "title": "Dynamic truck-drone collaborative transportation during hurricanes",
+   "abstract": "",
+   "venue": "Transportation Research Part C Emerging Technologies",
+   "issn": "0968-090X",
+   "top_name": "TR Part C",
+   "is_top": true,
+   "year": 2025,
+   "cited": 21,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 68.44058,
+   "authors": [
+    "Keyu Li",
+    "Haipeng Cui",
+    "Qiang Meng",
+    "Xuxin Zhang"
+   ],
+   "doi": "10.1016/j.trc.2025.105322",
+   "url": "https://doi.org/10.1016/j.trc.2025.105322",
+   "dims": {
+    "rel": 31,
+    "nov": 88,
+    "qual": 100,
+    "method": 32,
+    "insp": 64
+   },
+   "total": 56,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 TR Part C；近两年发表，时效性强；载体层级高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 10,
+   "cited_pct": 78
+  },
+  {
+   "i": 41,
+   "key": "doi:10.1016/j.trc.2024.104698",
+   "title": "Reliable truck-drone routing with dynamic synchronization: A high-dimensional network programming approach",
+   "abstract": "",
+   "venue": "Transportation Research Part C Emerging Technologies",
+   "issn": "0968-090X",
+   "top_name": "TR Part C",
+   "is_top": true,
+   "year": 2024,
+   "cited": 37,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 67.794044,
+   "authors": [
+    "Jiahao Xing",
+    "Tong Guo",
+    "Lu Carol Tong"
+   ],
+   "doi": "10.1016/j.trc.2024.104698",
+   "url": "https://doi.org/10.1016/j.trc.2024.104698",
+   "dims": {
+    "rel": 42,
+    "nov": 76,
+    "qual": 100,
+    "method": 32,
+    "insp": 59
+   },
+   "total": 58,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 TR Part C；载体层级高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 16,
+   "cited_pct": 88
+  },
+  {
+   "i": 42,
+   "key": "doi:10.1109/tsmc.2024.3371471",
+   "title": "A Collaborative Drone-Truck Delivery System With Memetic Computing Optimization",
+   "abstract": "With technological breakthroughs, drone deliveries have become increasingly popular, especially during the COVID-19 pandemic. Driven by both economical benefit and efficiency, drone-truck combined deliveries are in demand. However, it is very challenging to handle the collaboration between trucks and drones. Existing methods for truck-only routing cannot be directly applied, since their solution representations and search operators cannot consider the drone-truck collaborations effectively. In this article, we model the system as traveling salesman problem with drones (TSP-Ds), and propose a new Memetic algorithm named MATSP-D for solving it. Specifically, we design a new drone-truck solution representation and develop new crossover and local search operators under the new representation, which can modify the drone services effectively. MATSP-D conducts exploration by crossover, and exploitation by a variable neighborhood search process. The experimental results show that the proposed MATSP-D significantly outperforms the state-of-the-art algorithms for most test instances, especially the large instances with more complex collaborations between the truck and drone. Further analysis verifies the effectiveness of the newly developed local search operators in searching for better-drone-truck collaborations.",
+   "venue": "IEEE Transactions on Systems Man and Cybernetics Systems",
+   "issn": "2168-2216",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 30,
+   "is_oa": true,
+   "oa_url": "http://dx.doi.org/10.36227/techrxiv.24619209",
+   "score_hint": 66.692345,
+   "authors": [
+    "Ruonan Zhai",
+    "Yi Mei",
+    "Tong Guo",
+    "Wenbo Du"
+   ],
+   "doi": "10.1109/tsmc.2024.3371471",
+   "url": "https://doi.org/10.1109/tsmc.2024.3371471",
+   "dims": {
+    "rel": 58,
+    "nov": 76,
+    "qual": 78,
+    "method": 71,
+    "insp": 63
+   },
+   "total": 67,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "方法覆盖 优化建模、启发式算法；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 44,
+   "cited_pct": 86
+  },
+  {
+   "i": 43,
+   "key": "doi:10.1016/j.tre.2026.105236",
+   "title": "Truck-drone collaborative routing under road damage and dynamic demand for humanitarian logistics",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 65.85315,
+   "authors": [
+    "Liang YOU",
+    "Lei ZHANG",
+    "Mingfa ZHENG",
+    "Chuhan MA",
+    "Bowu Wei",
+    "Chen YANG"
+   ],
+   "doi": "10.1016/j.tre.2026.105236",
+   "url": "https://doi.org/10.1016/j.tre.2026.105236",
+   "dims": {
+    "rel": 66,
+    "nov": 100,
+    "qual": 98,
+    "method": 32,
+    "insp": 45
+   },
+   "total": 70,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；发表于顶刊 TR Part E；近两年发表，时效性强。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 60,
+   "cited_pct": 38
+  },
+  {
+   "i": 44,
+   "key": "doi:10.3390/drones8100550",
+   "title": "A Survey of the Routing Problem for Cooperated Trucks and Drones",
+   "abstract": "The emerging working mode of coordinated trucks and drones has demonstrated significant practical potential in various fields, including logistics and delivery, intelligence surveillance reconnaissance, area monitoring, and patrol. The seamless collaboration between trucks and drones is garnering widespread attention in academia and has emerged as a key technology for achieving efficient and secure transportation. This paper provides a comprehensive and in-depth review of the research status on the routing problem for coordinated trucks and drones, covering aspects such as application background, cooperative modes, configurations, issues that have been taken into consideration, and solution methodologies.",
+   "venue": "Drones",
+   "issn": "2504-446X",
+   "top_name": "",
+   "is_top": false,
+   "year": 2024,
+   "cited": 45,
+   "is_oa": true,
+   "oa_url": "https://www.mdpi.com/2504-446X/8/10/550/pdf?version=1728980281",
+   "score_hint": 65.73861,
+   "authors": [
+    "Shuo Dang",
+    "Yao Liu",
+    "Zhihao Luo",
+    "Zhong Liu",
+    "Jianmai Shi"
+   ],
+   "doi": "10.3390/drones8100550",
+   "url": "https://doi.org/10.3390/drones8100550",
+   "dims": {
+    "rel": 27,
+    "nov": 76,
+    "qual": 79,
+    "method": 38,
+    "insp": 68
+   },
+   "total": 50,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 6,
+   "cited_pct": 92
+  },
+  {
+   "i": 45,
+   "key": "doi:10.34088/kojose.2041394",
+   "title": "Scale-Dependent Performance Analysis of Metaheuristic Approaches for the Multi-Drone En-Route Truck-Drone Delivery Problem",
+   "abstract": "Truck-drone collaborative last-mile delivery systems extend the classical Traveling Salesperson Problem through complex range, capacity, and synchronization constraints. While most existing studies restrict drone-truck rendezvous to predetermined customer nodes, this study proposes an extended delivery model permitting en-route interception along road segments with multiple concurrent drones to minimize total makespan. The optimization problem is resolved via an O(n) single-pass, event-driven decoding procedure that incorporates a protective ground-wait strategy for the shared single-platform bottleneck and a segment-locking mechanism to prevent retroactive schedule disruption. The framework benchmarks two native-discrete paradigms—a Genetic Algorithm (GA) and a discrete Tabu Search (TS) baseline—against two continuous-domain, sigmoid-binarized metaheuristics: Binary Particle Swarm Optimization (BPSO) and the Binary African Vultures Optimization Algorithm (BAVOA), evaluated across 15 benchmark instances spanning three problem scales (n≈19, n ≈49, and n ≈99) under strictly equal function-evaluation budgets. Nonparametric statistical analyses reveal no significant performance divergence at the small scale (Friedman test, p =0.392). However, as the problem scale increases, native-discrete methods demonstrate statistically significant superiority over both BPSO (p=0.0051) and BAVOA (p=0.0033), achieving near-zero percentage gaps relative to the best-found solutions (GA: 0.016%, TS: 0.011%), while showing no significant difference from each other (Wilcoxon test, p =0.499). Furthermore, runtime evaluations demonstrate that this performance advantage incurs no computational overhead, with GA and TS exhibiting identical execution latencies. These findings provide empirical evidence that direct binary search operators yield significantly more robust and higher-quality solutions than the stochastic transfer functions used in continuous metaheuristics for discrete synchronization problems.",
+   "venue": "Kocaeli Journal of Science and Engineering",
+   "issn": "2667-484X",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://dergipark.org.tr/en/download/article-file/6450657",
+   "score_hint": 64.85419,
+   "authors": [
+    "Samet Diri"
+   ],
+   "doi": "10.34088/kojose.2041394",
+   "url": "https://doi.org/10.34088/kojose.2041394",
+   "dims": {
+    "rel": 33,
+    "nov": 100,
+    "qual": 73,
+    "method": 71,
+    "insp": 50
+   },
+   "total": 60,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "服务运营"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；方法覆盖 优化建模、启发式算法；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 12,
+   "cited_pct": 38
+  },
+  {
+   "i": 46,
+   "key": "doi:10.1016/j.cor.2025.107032",
+   "title": "Autonomous delivery vehicle routing problem with drones based on multiple delivery modes",
+   "abstract": "",
+   "venue": "Computers & Operations Research",
+   "issn": "0305-0548",
+   "top_name": "COR",
+   "is_top": true,
+   "year": 2025,
+   "cited": 20,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 63.723923,
+   "authors": [
+    "Jili Kong",
+    "Hao Wang",
+    "Minhui Xie"
+   ],
+   "doi": "10.1016/j.cor.2025.107032",
+   "url": "https://doi.org/10.1016/j.cor.2025.107032",
+   "dims": {
+    "rel": 31,
+    "nov": 88,
+    "qual": 98,
+    "method": 32,
+    "insp": 63
+   },
+   "total": 56,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 COR；近两年发表，时效性强；载体层级高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 10,
+   "cited_pct": 76
+  },
+  {
+   "i": 47,
+   "key": "doi:10.1016/j.tre.2024.103573",
+   "title": "The multi-fleet delivery problem combined with trucks, tricycles, and drones for last-mile logistics efficiency requirements under multiple budget constraints",
+   "abstract": "",
+   "venue": "Transportation Research Part E Logistics and Transportation Review",
+   "issn": "1366-5545",
+   "top_name": "TR Part E",
+   "is_top": true,
+   "year": 2024,
+   "cited": 39,
+   "is_oa": false,
+   "oa_url": "",
+   "score_hint": 63.26537,
+   "authors": [
+    "Enming Chen",
+    "Zhongbao Zhou",
+    "Ruiyang Li",
+    "Zhongxiang Chang",
+    "Jianmai Shi"
+   ],
+   "doi": "10.1016/j.tre.2024.103573",
+   "url": "https://doi.org/10.1016/j.tre.2024.103573",
+   "dims": {
+    "rel": 9,
+    "nov": 76,
+    "qual": 100,
+    "method": 32,
+    "insp": 60
+   },
+   "total": 45,
+   "rec": false,
+   "evid_ok": true,
+   "evid_missing": [
+    "摘要缺失"
+   ],
+   "method_groups": [],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "发表于顶刊 TR Part E；载体层级高。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 2,
+   "cited_pct": 90
+  },
+  {
+   "i": 48,
+   "key": "doi:10.3390/drones10060466",
+   "title": "Time-Efficient Routing and Speed Control for Truck Drone Delivery Under Non-Linear Energy Constraints",
+   "abstract": "Existing truck–drone collaborative routing models predominantly assume fixed flight speeds, overlooking the non-linear coupling among speed, payload, and energy consumption, which limits urban delivery efficiency. To bridge this gap, this paper proposes the multiple flying sidekick traveling salesman problem with variable drone speed (mFSTSP-VDS). Formulating drone cruising speed as a continuous variable under strict non-linear energy constraints, we design a hybrid algorithm (ALNS-SA-VND) to jointly optimize routing, task allocation, and speed. Empirical analysis of Wuhan’s road network demonstrates the VDS strategy’s robustness. Specifically, VDS reduces the system makespan by up to 17.5% compared to rigid maximum-speed strategies, with consistent stability across varying load scenarios. By adaptively trading permissible battery capacity for temporal synchronization, VDS effectively mitigates unnecessary truck waiting times at rendezvous nodes. This study quantitatively validates the impact of sortie-specific speed adaptation on time efficiency, providing an exploratory theoretical baseline for tactical-level planning in smart logistics networks.",
+   "venue": "Drones",
+   "issn": "2504-446X",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 1,
+   "is_oa": true,
+   "oa_url": "https://www.mdpi.com/2504-446X/10/6/466/pdf?version=1781706588",
+   "score_hint": 62.96423,
+   "authors": [
+    "Yuxuan Ji",
+    "L Y Liu",
+    "Yong Wang",
+    "Xi Vincent Wang",
+    "Lihui Wang"
+   ],
+   "doi": "10.3390/drones10060466",
+   "url": "https://doi.org/10.3390/drones10060466",
+   "dims": {
+    "rel": 64,
+    "nov": 100,
+    "qual": 74,
+    "method": 53,
+    "insp": 54
+   },
+   "total": 70,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "实证与统计"
+   ],
+   "domains": [
+    "物流配送",
+    "交通出行",
+    "能源环境"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "主题相关性较好；近两年发表，时效性强；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 54,
+   "cited_pct": 46
+  },
+  {
+   "i": 49,
+   "key": "t:a2441b1a98",
+   "title": "Learning-Based Optimization For Collaborative Truck-Drone Routing And Scheduling",
+   "abstract": "Modern delivery networks increasingly rely on innovative technologies such as drones working alongside trucks to meet rising demands for fast and efficient last–mile transportation. Hybrid truck–drone delivery offers strong potential, but its effectiveness depends on careful synchronization between trucks and drones. Although drones provide fast, direct travel, their limited endurance and the need to coordinate launch and recovery with trucks create tightly coupled routing and scheduling interactions. Poor dispatch decisions can cause truck waiting, reduce parallelism, and increase mission completion time. These challenges motivate decision frameworks that explicitly model synchronization and develop scalable methods for coordinated truck–drone operations. This dissertation develops learning– and optimization–based methods for synchronization-aware truck–drone delivery across three decision layers. Study I establishes a foundational one-truck one–drone model formulated as an episodic Markov decision process that preserves core endurance and timing constraints. Exact dynamic programming and a compact MILP are used for benchmarking, and a structured reinforcement learning policy with feasibility masking learns efficient joint decisions in this controlled setting. Study II focuses on execution–layer dispatch when the truck follows a fixed route. An event–driven simulator enforces launch, recovery, and single–operator constraints, and a masked PPO policy learns to reduce makespan consistently relative to strong greedy heuristics, especially when endurance levels make synchronization decisions critical. Study III addresses full planning in multi-truck multi–drone systems with flexible launch and recovery stops. A new integrated MILP formulation supports small–instance benchmarking, and a scalable MILP–assisted ALNS matheuristic solves large instances. Results show that coordinated planning with flexible stops provides significant reductions in makespan, particularly in larger and more spatially dispersed service regions. Together, the three studies provide a coherent toolchain for synchronization–aware decision making in hybrid truck–drone logistics.",
+   "venue": "Journal of International Crisis and Risk Communication Research",
+   "issn": "2576-0017",
+   "top_name": "",
+   "is_top": false,
+   "year": 2026,
+   "cited": 0,
+   "is_oa": true,
+   "oa_url": "https://stars.library.ucf.edu/cgi/viewcontent.cgi?article=1084&context=gradstudies_etd_2026",
+   "score_hint": 62.70894,
+   "authors": [
+    "Ahmad A. Bany Abdelnabi"
+   ],
+   "doi": "",
+   "url": "https://stars.library.ucf.edu/gradstudies_etd_2026/25",
+   "dims": {
+    "rel": 59,
+    "nov": 100,
+    "qual": 73,
+    "method": 74,
+    "insp": 50
+   },
+   "total": 71,
+   "rec": true,
+   "evid_ok": true,
+   "evid_missing": [],
+   "method_groups": [
+    "优化建模",
+    "启发式算法",
+    "机器学习",
+    "博弈与决策"
+   ],
+   "domains": [
+    "物流配送"
+   ],
+   "source_tags": [
+    "openalex"
+   ],
+   "src": "bm25+meta",
+   "why": "近两年发表，时效性强；方法覆盖 优化建模、启发式算法；开放获取可直接阅读。",
+   "sel": false,
+   "star": false,
+   "rel_pct": 46,
+   "cited_pct": 38
+  }
+ ],
+ "insights": [
+  {
+   "tag": "趋势",
+   "title": "2026 年产出升温",
+   "text": "本批样本中 2026 年 27 篇，此前年份平均 7.7 篇/年。",
+   "evidence": "按出版年份统计，仅代表本批召回结果"
+  },
+  {
+   "tag": "载体",
+   "title": "载体较分散",
+   "text": "前三个载体共 32%：Transportation Research Part E Logistics and Transportation Review（9）、Drones（4）、Computers & Industrial Engineering（3）。",
+   "evidence": "按期刊/会议名称统计"
+  },
+  {
+   "tag": "方法",
+   "title": "方法主线：优化建模、启发式算法、实证与统计",
+   "text": "本批标题/摘要中，优化建模 出现最多（29 篇）；其次为 启发式算法（23）、实证与统计（19）。",
+   "evidence": "按方法关键词命中篇数统计，单篇可命中多类"
+  },
+  {
+   "tag": "缺口",
+   "title": "实证与统计 × 案例与综述 交叉较少",
+   "text": "实证与统计 19 篇、案例与综述 4 篇，同时出现仅 0 篇，可作为方法交叉的选题线索。",
+   "evidence": "按方法关键词共现统计，仅代表本批样本"
+  },
+  {
+   "tag": "趋势",
+   "title": "启发式算法 方法占比上升",
+   "text": "最新年份 启发式算法 占比 63%，此前为 26%（最新 27 篇 vs 此前 23 篇）。",
+   "evidence": "按年份分组的方法关键词占比，仅代表本批样本"
+  },
+  {
+   "tag": "获取",
+   "title": "开放获取 30/50",
+   "text": "本批 30 篇可直接获取全文（60%），其余需通过机构订阅或出版商页面获取。",
+   "evidence": "OpenAlex open_access / Crossref CC 许可字段"
+  },
+  {
+   "tag": "证据",
+   "title": "元数据完整度提示",
+   "text": "16 篇缺少可用摘要，1 篇缺少 DOI；摘要缺失会在详情中标注，缺少标题/年份/载体与链接的条目不进入自动推荐。",
+   "evidence": "按标题/摘要/DOI/载体四项校验"
+  }
+ ],
+ "summary": "围绕「卡车无人机协同配送路径规划」，本批检索到 50 篇文献，其中 27 篇达到推荐阈值（综合分 ≥ 70）。优先建议阅读：《A proactive-reactive framework for collabora》（83 分，2026）；《Fast Bi-Level Task Assignment and Routing fo》（83 分，2026）；《An Optimized Collaborative Routing Model for》（82 分，2026）。本批样本中 2026 年 27 篇，此前年份平均 7.7 篇/年。前三个载体共 32%：Transportation Research Part E Logistics and Transportation Review（9）、Drones（4）、Computers & Industrial Engineering（3）。以上判断只基于公开元数据与标题/摘要词频，不等同于对论文结论的评价，请结合原文核对。"
+}

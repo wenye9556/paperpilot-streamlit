@@ -23,12 +23,15 @@ class NormalizeCrossrefTest(unittest.TestCase):
             "abstract": "<jats:p>We study <jats:italic>routing</jats:italic>.</jats:p>",
             "URL": "https://example.org/a",
             "license": [{"URL": "https://creativecommons.org/licenses/by/4.0/"}],
+            "link": [{"content-type": "application/pdf",
+                      "URL": "https://example.org/a.pdf"}],
         }
         row = sources.normalize_crossref(raw)
         self.assertEqual(row["doi"], "10.1016/j.trc.2025.100001")
         self.assertEqual(row["year"], 2025)
         self.assertTrue(row["is_top"])
         self.assertTrue(row["is_oa"])
+        self.assertEqual(row["oa_url"], "https://example.org/a.pdf")
         self.assertEqual(row["authors"], ["Alice Zhang"])
         self.assertNotIn("<jats", row["abstract"])
         self.assertEqual(row["source_tags"], ["crossref"])
@@ -59,6 +62,22 @@ class MergeTest(unittest.TestCase):
     def test_size_limit(self):
         rows = [self._row(f"Paper {i}") for i in range(10)]
         self.assertEqual(len(sources.merge_items([rows], size=3)), 3)
+
+    def test_near_dup_merge(self):
+        a = self._row("Truck-drone collaborative delivery with a mobile station trailer",
+                      doi="10.1/a")
+        b = self._row("Truck drone collaborative delivery with a mobile station trailer",
+                      doi="10.1/b", tags=("crossref",))
+        merged = sources.merge_items([[a], [b]])
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(set(merged[0]["source_tags"]), {"openalex", "crossref"})
+
+    def test_part_i_ii_not_merged(self):
+        a = self._row("Truck-drone routing problem: Part I formulation", doi="10.1/a")
+        b = self._row("Truck-drone routing problem: Part II algorithm", doi="10.1/b",
+                      tags=("crossref",))
+        merged = sources.merge_items([[a], [b]])
+        self.assertEqual(len(merged), 2)
 
 
 class SearchAllTest(unittest.TestCase):
