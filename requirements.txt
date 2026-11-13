@@ -1,3 +1,4 @@
+# 2026-11-13 rebuild: 让云端重新导入 llm.py（热重载不刷新已导入模块）
 streamlit>=1.50,<2
 altair>=5.0
 pandas>=2.0
