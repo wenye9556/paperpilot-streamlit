@@ -137,14 +137,17 @@ def test_connection(cfg: LLMConfig) -> str:
 def parse_intent(cfg: LLMConfig, text: str) -> dict:
     """把研究意图改写成英文检索式 + 中文标签。"""
     system = (
-        "你是学术检索助手。把用户的研究意图改写成适合 OpenAlex / Crossref 的英文检索式，"
-        "并抽取 2-6 个中文主题标签。要求：保留专业术语，不添加用户没说的概念，不编造缩写。"
-        "只输出 JSON：{\"query\": \"英文检索式\", \"tags\": [\"中文标签\"], \"note\": \"一句话说明\"}。"
+        "你是一个只输出 JSON 的学术检索式改写器。把中文研究意图改写成英文检索式，"
+        "并抽取 2-6 个中文标签。英文检索式用空格分隔，不要用连字符；保留专业术语，"
+        "不添加用户没说的概念。示例输入：城市物流无人机调度。"
+        "示例输出：{\"query\":\"urban logistics drone scheduling\","
+        "\"tags\":[\"城市物流\",\"无人机\",\"调度\"],\"note\":\"已翻译\"}。"
+        "现在只输出 JSON，不要解释、不要 markdown、不要思考过程。"
     )
     content = _post(cfg, [
         {"role": "system", "content": system},
-        {"role": "user", "content": text},
-    ], temperature=0.1, max_tokens=400)
+        {"role": "user", "content": f"研究意图：{text}"},
+    ], temperature=0.1, max_tokens=1200)
     data = _extract_json(content)
     if not isinstance(data, dict):
         raise LLMError("意图解析返回格式不正确。")
@@ -159,39 +162,57 @@ def parse_intent(cfg: LLMConfig, text: str) -> dict:
 
 
 def explain_items(cfg: LLMConfig, query: str, items: list[dict]) -> dict[str, str]:
-    """为每篇文献写一句基于标题/摘要的推荐理由，返回 {key: why}。"""
-    rows = []
-    for x in items[:20]:
-        rows.append({
-            "id": x.get("key") or str(x.get("i")),
-            "title": x.get("title") or "",
-            "venue": x.get("venue") or "",
-            "year": x.get("year") or "",
-            "abstract": (x.get("abstract") or "")[:360],
-        })
-    system = (
-        "你是文献阅读助手。根据给定的标题、载体、年份和摘要，为每篇文献写一句不超过 40 字的中文推荐理由。"
-        "只能使用给定信息，不得编造方法、数据、结论；信息不足时写「摘要缺失，建议看原文」。"
-        "只输出 JSON 数组：[{\"id\": \"...\", \"why\": \"...\"}]。"
-    )
-    user = json.dumps({"query": query, "items": rows}, ensure_ascii=False)
-    content = _post(cfg, [
-        {"role": "system", "content": system},
-        {"role": "user", "content": user},
-    ], temperature=0.2, max_tokens=1400)
-    data = _extract_json(content)
-    if not isinstance(data, list):
-        raise LLMError("推荐理由返回格式不正确。")
+    """为每篇文献写一句基于标题/摘要的推荐理由，返回 {key: why}。
+
+    采用 8 篇一批的小批量调用：既降低单次输出被截断的概率，
+    也让免费额度下的失败可以局部恢复。
+    """
     out: dict[str, str] = {}
-    for row in data:
-        if not isinstance(row, dict):
+    last_err: LLMError | None = None
+    chunk_size = 8
+    for start in range(0, min(len(items), 24), chunk_size):
+        chunk = items[start:start + chunk_size]
+        rows = []
+        for local_i, x in enumerate(chunk):
+            rows.append({
+                "id": local_i,
+                "title": x.get("title") or "",
+                "venue": x.get("venue") or "",
+                "year": x.get("year") or "",
+                "abstract": (x.get("abstract") or "")[:220],
+            })
+        system = (
+            "你是文献阅读助手。为给定文献各写一句不超过 25 字的中文推荐理由。"
+            "只能使用给定的标题、载体、年份和摘要，不得编造方法、数据或结论；"
+            "信息不足时写「建议看原文」。只输出 JSON 数组："
+            "[{\"id\":0,\"why\":\"...\"}]，不要解释、不要 markdown。"
+        )
+        user = json.dumps({"query": query, "items": rows}, ensure_ascii=False)
+        try:
+            content = _post(cfg, [
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ], temperature=0.2, max_tokens=1200)
+            data = _extract_json(content)
+            if not isinstance(data, list):
+                raise LLMError("推荐理由返回格式不正确。")
+            for row in data:
+                if not isinstance(row, dict):
+                    continue
+                try:
+                    idx = int(row.get("id"))
+                except (TypeError, ValueError):
+                    continue
+                if 0 <= idx < len(chunk):
+                    why = str(row.get("why") or "").strip()
+                    if why:
+                        key = chunk[idx].get("key") or str(start + idx)
+                        out[key] = why[:120]
+        except LLMError as exc:
+            last_err = exc
             continue
-        k = str(row.get("id") or "").strip()
-        why = str(row.get("why") or "").strip()
-        if k and why:
-            out[k] = why[:120]
     if not out:
-        raise LLMError("推荐理由为空。")
+        raise last_err or LLMError("推荐理由为空。")
     return out
 
 
@@ -199,16 +220,26 @@ def summarize(cfg: LLMConfig, query: str, stats: dict, insights: list[dict]) -> 
     """基于统计与洞察写一段调研摘要，不允许编造文献结论。"""
     system = (
         "你是科研调研助手。根据给出的检索统计与元数据洞察，写一段 150-250 字的中文调研摘要。"
-        "只能使用给定数字与观察，不得编造具体论文结论、作者观点或未给出的数据。"
+        "只能使用给定字段和数字，必须沿用字段原名（如「本页文献」「达标推荐」「顶刊篇数」「开放获取」），"
+        "不要改写成「检索命中」「高被引」等其他口径；不得编造具体论文结论、作者观点或未给出的数据。"
         "语气客观，先给结论，再给 1-2 条选题线索，最后提醒需读原文核对。"
     )
+    stat_view = {
+        "本页文献": stats.get("page"),
+        "达标推荐": stats.get("rec"),
+        "顶刊篇数": stats.get("top"),
+        "开放获取": stats.get("oa"),
+        "平均被引": stats.get("avg_cited"),
+        "年份区间": stats.get("years"),
+        "推荐阈值": stats.get("threshold"),
+    }
     payload = {
         "query": query,
-        "stats": stats,
+        "stats": stat_view,
         "insights": [{"title": i.get("title"), "text": i.get("text")} for i in insights],
     }
     content = _post(cfg, [
         {"role": "system", "content": system},
         {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
-    ], temperature=0.3, max_tokens=600)
+    ], temperature=0.3, max_tokens=900)
     return content.strip()[:1200]
