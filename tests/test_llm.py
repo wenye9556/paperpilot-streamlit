@@ -77,11 +77,13 @@ class LLMTest(unittest.TestCase):
         self.assertIn("无人机", out["tags"])
 
     def test_explain_items(self):
+        # 新版契约：id 是本批次内的局部下标，避免模型回填长 key 出错
         _Handler.content = json.dumps([
-            {"id": "doi:10.1/a", "why": "把卡车与无人机协同路径建模为混合整数规划。"},
+            {"id": 0, "why": "把卡车与无人机协同路径建模为混合整数规划。"},
         ], ensure_ascii=False)
         out = llm.explain_items(self.cfg, "drone", [{"key": "doi:10.1/a", "title": "T"}])
         self.assertIn("doi:10.1/a", out)
+        self.assertIn("混合整数规划", out["doi:10.1/a"])
 
     def test_summarize(self):
         _Handler.content = "本批 50 篇，13 篇达到阈值，建议先读三篇。"
